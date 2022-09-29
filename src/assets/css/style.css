@@ -2,6 +2,9 @@
 body {
     background: #100E0E;
 }
+* {
+    box-sizing: border-box;
+}
 h1 {
     font-family: 'Julius Sans One', sans-serif;
 }
