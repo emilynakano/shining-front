@@ -6,6 +6,7 @@ import Input from '../components/form/Input';
 import Button from '../components/form/Button';
 import Title from '../components/form/Title';
 import Form from '../components/form';
+import { signIn } from '../hooks/useAuth';
 
 export default function SignIn() {
   const [user, setUser] = useState({
@@ -17,9 +18,14 @@ export default function SignIn() {
     setUser({ ...user, [e.target.name]: e.target.value });
   }
 
-  function HandleSubmit(e) {
+  async function HandleSubmit(e) {
     e.preventDefault();
-    console.log(user);
+
+    try {
+      await signIn(user);
+    } catch (error) {
+      console.log('error');
+    }
   }
 
   return (
