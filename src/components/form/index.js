@@ -7,6 +7,17 @@ const Form = styled.form`
   
   width: 95%;
   max-width: 420px;
+
+  /* autocomplet background*/
+  input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 30px #100E0E inset;
+  }
+
+  /* autocomplet font color */
+  input:-webkit-autofill {
+      -webkit-text-fill-color: white !important;
+  }
+  
 `;
 
 export default Form;
