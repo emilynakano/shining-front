@@ -1,11 +1,13 @@
 import styled from 'styled-components';
-
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+
 import Header from '../components/Header';
 import Input from '../components/form/Input';
 import Button from '../components/form/Button';
 import Title from '../components/form/Title';
 import Form from '../components/form';
+
 import { signIn } from '../hooks/useAuth';
 
 export default function SignIn() {
@@ -24,7 +26,9 @@ export default function SignIn() {
     try {
       await signIn(user);
     } catch (error) {
-      console.log('error');
+      toast.error(
+        'An error occurred while trying to login, check your credentials',
+      );
     }
   }
 
