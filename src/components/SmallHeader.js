@@ -1,13 +1,14 @@
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
 
 export default function SmallHeader() {
+  const navigate = useNavigate();
   return (
     <Container>
       <img src={logo} alt="shinning" />
-
       <Auth>
-        <SignIn className="color">
+        <SignIn className="color" onClick={() => navigate('/sign-in')}>
           <h1>sign-in</h1>
         </SignIn>
         <SignUp className="background">
