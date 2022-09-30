@@ -20,7 +20,6 @@ export default function SignIn() {
 
   async function HandleSubmit(e) {
     e.preventDefault();
-    alert('oi');
 
     try {
       await signIn(user);
@@ -43,7 +42,7 @@ export default function SignIn() {
           placeholder="Email"
           name="email"
           value={user.email}
-          onChange={(e) => ChangeInput(e)}
+          onChange={ChangeInput}
           required
         />
         <Input
@@ -51,7 +50,7 @@ export default function SignIn() {
           placeholder="Password"
           name="password"
           value={user.password}
-          onChange={(e) => ChangeInput(e)}
+          onChange={ChangeInput}
           required
         />
         <Button type="submit">
