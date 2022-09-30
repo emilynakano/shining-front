@@ -14,6 +14,7 @@ export default function Header() {
 }
 
 const Container = styled.div`
+  background:#100E0E;
 `;
 
 const Row = styled.div`

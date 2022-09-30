@@ -58,7 +58,7 @@ const Container = styled.div`
     justify-content:space-between;
     padding: 0 20px;
     height: 60px;
-
+    box-shadow: 0px 1px 1px rgba(253, 253, 253, 0.1);
     .color {
         transition: h1 border-color 0.2s;
         &:hover {
