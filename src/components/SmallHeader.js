@@ -24,30 +24,37 @@ const Auth = styled.div`
     gap: 10px;
 `;
 
-const SignUp = styled.div`
+const SignIn = styled.div`
     cursor: pointer;
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    width: 121px;
-    height: 35px;
-    background: #D9D9D9;
-    border-radius: 50px;
-    h1 {
-        text-align:center;
-        color: black;
-        font-weight: 700;
-        font-size: 13px;
-    }
-`;
-
-const SignIn = styled(SignUp)`
     background: none;
     mix-blend-mode: exclusion;
     border: 2px solid #D9D9D9;
     h1 {
         color: white;
     }
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 121px;
+    height: 35px;
+    
+    border-radius: 50px;
+  
+`;
+
+const SignUp = styled(SignIn)`
+  border:none;
+  background: #D9D9D9;
+  h1 {
+    text-align:center;
+    color: black;
+    font-weight: 700;
+    font-size: 13px;
+  }
+  @media (max-width: 465px) {
+    display: none
+  }
+      
 `;
 
 const Container = styled.div`

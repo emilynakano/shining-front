@@ -15,7 +15,8 @@ export default function Home() {
           <div className="description">
             <h2>
               Exercise your memory with a program
-              entirely based on the studies of the psychologist Hermann Ebbinghaus.
+              entirely based on the studies of the
+              psychologist Hermann Ebbinghaus.
             </h2>
           </div>
         </Main>
