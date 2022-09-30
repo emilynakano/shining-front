@@ -1,27 +1,43 @@
 /* eslint-disable react/no-unescaped-entities */
 import styled from 'styled-components';
 import SmallHeader from '../components/SmallHeader';
+import Balloon from '../assets/images/balloon.jpg';
 
 export default function Home() {
   return (
     <>
       <SmallHeader />
       <Container>
-        <div className="top">
-          <h1>It's not a horror movie, but you'll never forget!</h1>
-        </div>
-        <div className="description">
-          <h2>
-            Exercise your memory with a program
-            entirely based on the studies of the psychologist Hermann Ebbinghaus.
-          </h2>
-        </div>
+        <Main>
+          <div className="top">
+            <h1>It's not a horror movie, but you'll never forget!</h1>
+          </div>
+          <div className="description">
+            <h2>
+              Exercise your memory with a program
+              entirely based on the studies of the psychologist Hermann Ebbinghaus.
+            </h2>
+          </div>
+        </Main>
+
+        <img src={Balloon} alt="balloon" />
       </Container>
     </>
   );
 }
-
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  height: calc(100vh - 60px);
+  justify-content: space-between;
+  img {
+    margin-bottom: 0;
+    width: 45px;
+  }
+`;
+
+const Main = styled.div`
   margin-top: 50px;
   display: flex;
   flex-direction: column;
@@ -57,6 +73,7 @@ const Container = styled.div`
     width: 80%;
     max-width: 600px;
   }
+
   @media (max-width: 465px) {
     h1 {
       font-size: 36px;
