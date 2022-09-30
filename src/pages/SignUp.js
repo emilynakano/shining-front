@@ -8,6 +8,8 @@ import Button from '../components/form/Button';
 import Title from '../components/form/Title';
 import Form from '../components/form';
 
+import { signUpAndLogin } from '../hooks/useAuth';
+
 export default function SignUp() {
   const [user, setUser] = useState({
     name: '',
@@ -24,7 +26,7 @@ export default function SignUp() {
     e.preventDefault();
 
     try {
-      console.log('signup');
+      await signUpAndLogin(user);
     } catch (error) {
       toast.error(
         'Invalid email, choose another one',
