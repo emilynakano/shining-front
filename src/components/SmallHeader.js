@@ -11,7 +11,7 @@ export default function SmallHeader() {
         <SignIn className="color" onClick={() => navigate('/sign-in')}>
           <h1>sign-in</h1>
         </SignIn>
-        <SignUp className="background">
+        <SignUp className="background" onClick={() => navigate('/sign-up')}>
           <h1>get started</h1>
         </SignUp>
       </Auth>
