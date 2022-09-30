@@ -19,6 +19,9 @@ export default function Home() {
               psychologist Hermann Ebbinghaus.
             </h2>
           </div>
+          <div className="signUp">
+            <h3>Get Started</h3>
+          </div>
         </Main>
 
         <img src={Balloon} alt="balloon" />
@@ -33,8 +36,12 @@ const Container = styled.div`
   height: calc(100vh - 60px);
   justify-content: space-between;
   img {
-    margin-bottom: 0;
-    width: 45px;
+    width: 60px;
+  }
+  @media (max-width: 465px) {
+    img {
+      width: 40px;
+    }
   }
 `;
 
@@ -75,10 +82,32 @@ const Main = styled.div`
     max-width: 600px;
   }
 
+  .signUp {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: 121px;
+    height: 35px;
+    
+    border-radius: 50px;
+    background: #D9D9D9;
+    h3 {
+      text-align:center;
+      color: black;
+      font-weight: 700;
+      font-size: 13px;
+    }
+  }
+
   @media (max-width: 465px) {
+    margin-top: 20px;
     h1 {
-      font-size: 36px;
+      line-height: 34px;
+      font-size: 30px;
       letter-spacing: 0;
+    }
+    h2 {
+      font-size: 15px;
     }
   }
 `;
