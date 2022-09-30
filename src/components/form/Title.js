@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 const Title = styled.form`
-  width: 95%;
-  max-width: 420px;
+  background: red;
+  width: 100%;
   h1 {
     color: white;
   }
