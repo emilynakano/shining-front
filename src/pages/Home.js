@@ -1,9 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import SmallHeader from '../components/SmallHeader';
 import Balloon from '../assets/images/balloon.jpg';
 
 export default function Home() {
+  const navigate = useNavigate();
   return (
     <>
       <SmallHeader />
@@ -19,7 +21,7 @@ export default function Home() {
               psychologist Hermann Ebbinghaus.
             </h1>
           </Description>
-          <SignUp>
+          <SignUp onClick={() => navigate('/sign-up')}>
             <h1>Get Started</h1>
           </SignUp>
         </Main>
