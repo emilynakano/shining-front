@@ -9,19 +9,19 @@ export default function Home() {
       <SmallHeader />
       <Container>
         <Main>
-          <div className="top">
-            <h1>It's not a horror movie, but you'll never forget!</h1>
-          </div>
-          <div className="description">
-            <h2>
+          <Title>
+            <h1 className="title">It's not a horror movie, but you'll never forget!</h1>
+          </Title>
+          <Description>
+            <h1 className="description">
               Exercise your memory with a program
               entirely based on the studies of the
               psychologist Hermann Ebbinghaus.
-            </h2>
-          </div>
-          <div className="signUp">
-            <h3>Get Started</h3>
-          </div>
+            </h1>
+          </Description>
+          <SignUp>
+            <h1>Get Started</h1>
+          </SignUp>
         </Main>
 
         <img src={Balloon} alt="balloon" />
@@ -38,9 +38,9 @@ const Container = styled.div`
     margin-top: 40px;
     width: 60px;
   }
-  @media (max-width: 465px) {
+  @media (max-width: 400px) {
     img {
-      width: 40px;
+      width: 45px;
     }
   }
 `;
@@ -52,62 +52,62 @@ const Main = styled.div`
   align-items:center;
   gap: 20px;
   h1 {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 800;
-    font-size: 45px;
-    line-height: 50px;
-    text-align: center;
-    letter-spacing: 0.05em;
-    color: #DA2222;
-    mix-blend-mode: lighten;
-  }
-  h2 {
     font-family: 'Roboto Mono';
     font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 26px;
-    display: flex;
     align-items: center;
     text-align: center;
-    color: #FFFFFF;
-  }
-  .top {
-    width: 80%;
-    max-width: 700px;
-  }
-  .description {
-    width: 80%;
-    max-width: 600px;
-  }
-
-  .signUp {
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    width: 200px;
-    height: 35px;
-    
-    border-radius: 50px;
-    background: #D9D9D9;
-    h3 {
-      text-align:center;
-      color: black;
-      font-weight: 700;
-      font-size: 13px;
-    }
   }
 
   @media (max-width: 465px) {
     margin-top: 20px;
-    h1 {
+    .title {
       line-height: 34px;
       font-size: 30px;
       letter-spacing: 0;
     }
-    h2 {
+    .description {
       font-size: 15px;
     }
   }
+`;
+
+const SignUp = styled.div`
+  cursor: pointer;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 35px;
+  border-radius: 50px;
+  background: #D9D9D9;
+  h1 {
+    text-align:center;
+    color: black;
+    font-weight: 700;
+    font-size: 18px;
+  }
+`;
+const Description = styled.div`
+  width: 80%;
+  max-width: 600px;
+  h1 {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 26px;
+    color: #FFFFFF;
+  }
+`;
+
+const Title = styled.div`
+  width: 80%;
+  max-width: 700px;
+  h1 {
+    font-weight: 800;
+    font-size: 45px;
+    line-height: 50px;
+    letter-spacing: 0.05em;
+    color: #DA2222;
+    mix-blend-mode: lighten;
+  }
+  
 `;
