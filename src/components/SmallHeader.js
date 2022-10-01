@@ -66,20 +66,21 @@ const Container = styled.div`
     padding: 0 20px;
     height: 60px;
     box-shadow: 0px 1px 1px rgba(253, 253, 253, 0.1);
+    
     .color {
-        transition: h1 border-color 0.2s;
+        transition: border-color 0.4s;
         &:hover {
-            border-color: red;
+            border-color: #DA2222;
             h1 {
-                color: red;
+                color: #DA2222;
             }
         }
     }
 
     .background {
-        transition: h1 background-color 0.2s;
+        transition: background-color 0.4s;
         &:hover {
-            background-color: red;
+            background-color: #DA2222;
         }
     }
 

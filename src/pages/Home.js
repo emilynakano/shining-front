@@ -82,6 +82,10 @@ const SignUp = styled.div`
   height: 35px;
   border-radius: 50px;
   background: #D9D9D9;
+  transition: box-shadow 0.2s;
+  &:hover {
+    box-shadow: 10px 9px 37px 6px rgba(179,45,45,0.66);
+  }
   h1 {
     text-align:center;
     color: black;
