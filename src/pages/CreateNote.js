@@ -1,5 +1,10 @@
+import HeaderUser from '../components/HeaderUser';
+
 export default function CreateNote() {
   return (
-    <h1>oi</h1>
+    <>
+      <HeaderUser />
+      <h1>oi</h1>
+    </>
   );
 }
