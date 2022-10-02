@@ -12,7 +12,7 @@ export default function CreateNote() {
     <>
       <HeaderUser />
       <Container>
-        <Editor>
+        <Editor data-color-mode="light">
           <h1>
             Create the note you won't forget!
           </h1>
