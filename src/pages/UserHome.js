@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import HeaderUser from '../components/HeaderUser';
 
 export default function UserHome() {
   return (
-    <h1>user home</h1>
+    <HeaderUser />
   );
 }
 const Container = styled.div`
