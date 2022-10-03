@@ -53,9 +53,14 @@ const Notes = styled.div`
   font-weight: 600;
   color: black;
 
-  word-break: break-word;
   .description {
     font-weight: 400;
+  }
+
+  cursor: pointer;
+  transition: box-shadow 0.4s;
+  &:hover {
+    box-shadow: 10px 9px 37px 6px rgba(179,45,45,0.66);
   }
 `;
 
