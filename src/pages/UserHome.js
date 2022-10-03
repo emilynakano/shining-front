@@ -17,6 +17,13 @@ export default function UserHome() {
             notes and create them.
           </h2>
         </Notes>
+        <Today>
+          <h2>TODAY</h2>
+          <h2 className="description">
+            Here you see all your notes that need
+            to be reviewed today
+          </h2>
+        </Today>
       </Container>
     </>
   );
@@ -50,6 +57,10 @@ const Notes = styled.div`
   .description {
     font-weight: 400;
   }
+`;
+
+const Today = styled(Notes)`
+  
 `;
 const Text = styled.div`
   display: flex;
