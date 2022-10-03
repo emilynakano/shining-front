@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-bind */
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import Input from '../components/form/Input';
