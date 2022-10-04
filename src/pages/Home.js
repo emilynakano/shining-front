@@ -76,6 +76,7 @@ const Main = styled.div`
 `;
 
 const SignUp = styled.div`
+  margin-top: 10px;
   cursor: pointer;
   display:flex;
   align-items: center;
@@ -97,11 +98,12 @@ const SignUp = styled.div`
 `;
 const Description = styled.div`
   width: 80%;
-  max-width: 600px;
+  max-width: 500px;
   h1 {
     font-weight: 700;
     font-size: 20px;
     line-height: 26px;
+    letter-spacing: 0.01em;
     color: #FFFFFF;
   }
 `;
