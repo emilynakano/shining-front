@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { AiFillPlusCircle } from 'react-icons/ai';
 import HeaderUser from '../components/HeaderUser';
 
 export default function Notes() {
@@ -8,6 +9,7 @@ export default function Notes() {
       <Container>
         <Title>
           <h2>NOTES</h2>
+          <AiFillPlusCircle color="#C50B0B" font-size={30} />
         </Title>
       </Container>
     </>
