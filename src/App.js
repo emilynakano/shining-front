@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
 import Home from './pages/Home';
+import CreateNote from './pages/CreateNote';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/notes/create" element={<CreateNote />} />
       </Routes>
     </BrowserRouter>
 
