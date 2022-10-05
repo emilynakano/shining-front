@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import HeaderUser from '../components/HeaderUser';
 
 export default function UserHome() {
+  const navigate = useNavigate();
   return (
     <>
       <HeaderUser />
@@ -10,7 +12,7 @@ export default function UserHome() {
           <h2>Welcome, Emily!</h2>
           <h2>Choose one of the options.</h2>
         </Text>
-        <Notes>
+        <Notes onClick={() => navigate('/notes')}>
           <h2>NOTES</h2>
           <h2 className="description">
             Here you can see all your
