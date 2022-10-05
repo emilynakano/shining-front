@@ -1,20 +1,27 @@
 import styled from 'styled-components';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import HeaderUser from '../components/HeaderUser';
 import api from '../services/api';
 
 export default function Notes() {
+  const navigate = useNavigate();
   useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
-    console.log(accessToken);
+    const token = localStorage.getItem('@shining:token');
+    console.log(token);
     const config = {
       headers: {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${token}`,
       },
     };
     const promise = api.get('notes', config);
     promise.then((res) => console.log(res.data));
+    promise.catch((err) => {
+      if (err.response.status === 401) {
+        navigate('/sign-in');
+      }
+    });
   }, []);
   return (
     <>
