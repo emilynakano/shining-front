@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import MDEditor from '@uiw/react-md-editor';
 import HeaderUser from '../components/HeaderUser';
 import api from '../services/api';
 
@@ -36,25 +37,50 @@ export default function Notes() {
         {notes.length === 0
           ? <h2 className="zeroNotes">There are no notes yet, create one.</h2>
           : notes.map((note) => (
-            <>
-              <Note>
-                <h1>{note.title}</h1>
-                <DataNote>
-                  <Date>
-                    <h2>{`Date: ${note.date}`}</h2>
-                  </Date>
-                  <Progress>
-                    <h2>{`Progress: ${note.progress}`}</h2>
-                  </Progress>
-                </DataNote>
-              </Note>
-              <Row />
-            </>
+            <Notess note={note} />
           ))}
       </Container>
     </>
   );
 }
+
+function Notess({ note }) {
+  const [click, setClick] = useState(false);
+  return (
+    <>
+      <Note onClick={() => (click ? setClick(false) : setClick(true))}>
+        <h1>{note.title}</h1>
+        <DataNote>
+          <Date>
+            <h2>{`Date: ${note.date}`}</h2>
+          </Date>
+          <Progress>
+            <h2>{`Progress: ${note.progress}`}</h2>
+          </Progress>
+        </DataNote>
+      </Note>
+      <Row />
+      {click ? <NoteContent content={note.content} /> : ''}
+    </>
+
+  );
+}
+
+function NoteContent({ content }) {
+  return (
+    <Content>
+      <MDEditor.Markdown
+        source={content}
+        linkTarget="_blank"
+      />
+    </Content>
+  );
+}
+
+const Content = styled.div`
+  padding: 15px;
+  background: white;
+`;
 
 const Row = styled.div`
     width: 100%;
@@ -99,6 +125,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 20px;
+  .escondido {
+    display: none;
+  }
   h2 {
     font-weight: 700;
     color: white;
