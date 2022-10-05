@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Input from '../components/form/Input';
 import Button from '../components/form/Button';
@@ -11,6 +12,7 @@ import Form from '../components/form';
 import { signUpAndLogin } from '../hooks/useAuth';
 
 export default function SignUp() {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -27,6 +29,7 @@ export default function SignUp() {
 
     try {
       await signUpAndLogin(user);
+      navigate('/home');
     } catch (error) {
       toast.error(
         'Invalid email, choose another one',
