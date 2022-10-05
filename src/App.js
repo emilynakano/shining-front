@@ -7,6 +7,7 @@ import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
 import Home from './pages/Home';
 import CreateNote from './pages/CreateNote';
+import UserHome from './pages/UserHome';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/notes/create" element={<CreateNote />} />
+        <Route path="/home" element={<UserHome />} />
       </Routes>
     </BrowserRouter>
 
