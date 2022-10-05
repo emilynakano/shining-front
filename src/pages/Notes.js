@@ -1,8 +1,21 @@
 import styled from 'styled-components';
 import { AiFillPlusCircle } from 'react-icons/ai';
+import { useEffect } from 'react';
 import HeaderUser from '../components/HeaderUser';
+import api from '../services/api';
 
 export default function Notes() {
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+    console.log(accessToken);
+    const config = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
+    const promise = api.get('notes', config);
+    promise.then((res) => console.log(res.data));
+  }, []);
   return (
     <>
       <HeaderUser />
