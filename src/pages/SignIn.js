@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import Input from '../components/form/Input';
 import Button from '../components/form/Button';
 import Form from '../components/form';
@@ -8,6 +9,7 @@ import Header from '../components/Header';
 import Title from '../components/form/Title';
 
 export default function SignIn() {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     email: '',
     password: '',
@@ -16,12 +18,12 @@ export default function SignIn() {
   function ChangeInput(e) {
     setUser({ ...user, [e.target.name]: e.target.value });
   }
-
   async function HandleSubmit(e) {
     e.preventDefault();
 
     try {
       await signIn(user);
+      navigate('/home');
     } catch (error) {
       toast.error(
         'Invalid email or password, check your credentials',
