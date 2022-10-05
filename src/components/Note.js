@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import MDEditor from '@uiw/react-md-editor';
+import Fade from 'react-reveal/Fade';
 
 export default function Note({ note }) {
   const [click, setClick] = useState(false);
@@ -18,20 +19,22 @@ export default function Note({ note }) {
         </DataNote>
       </Container>
       <Row />
-      {click ? <NoteContent content={note.content} /> : ''}
+      <NoteContent click={click} content={note.content} />
     </>
 
   );
 }
 
-function NoteContent({ content }) {
+function NoteContent({ content, click }) {
   return (
-    <Content>
-      <MDEditor.Markdown
-        source={content}
-        linkTarget="_blank"
-      />
-    </Content>
+    <Fade left opposite collapse when={click}>
+      <Content>
+        <MDEditor.Markdown
+          source={content}
+          linkTarget="_blank"
+        />
+      </Content>
+    </Fade>
   );
 }
 
