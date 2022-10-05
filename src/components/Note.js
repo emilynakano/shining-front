@@ -7,7 +7,7 @@ export default function Note({ note }) {
   const [click, setClick] = useState(false);
   return (
     <>
-      <Container onClick={() => (click ? setClick(false) : setClick(true))}>
+      <Container className="hover" onClick={() => (click ? setClick(false) : setClick(true))}>
         <h1>{note.title}</h1>
         <DataNote>
           <Date>
@@ -41,6 +41,7 @@ function NoteContent({ content, click }) {
 const Content = styled.div`
     padding: 15px;
     background: white;
+    border-radius: 5px;
 `;
 
 const Row = styled.div`
@@ -48,8 +49,8 @@ const Row = styled.div`
     height: 1px;
     box-shadow: 0px 1px 1px rgba(253, 253, 253, 0.1);
   `;
-const Container = styled.div`
-    padding: 20px 0;
+const Container = styled.div` 
+    padding: 20px 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -58,6 +59,15 @@ const Container = styled.div`
     font-size: 13px;
     margin-top: 5px
     }
+    &:hover {
+    background-image: linear-gradient(90deg, #161212  0%, black 10%, #161212 80%);
+
+    background-position: 100% 0;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
 `;
 
 const DataNote = styled.div`
