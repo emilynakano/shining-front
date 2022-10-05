@@ -1,28 +1,29 @@
 import styled from 'styled-components';
 import { AiFillPlusCircle } from 'react-icons/ai';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import HeaderUser from '../components/HeaderUser';
 import api from '../services/api';
 
 export default function Notes() {
   const navigate = useNavigate();
+  const [notes, setNotes] = useState(false);
   useEffect(() => {
     const token = localStorage.getItem('@shining:token');
-    console.log(token);
     const config = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     };
     const promise = api.get('notes', config);
-    promise.then((res) => console.log(res.data));
+    promise.then((res) => setNotes(res.data));
     promise.catch((err) => {
       if (err.response.status === 401) {
         navigate('/sign-in');
       }
     });
   }, []);
+  if (!notes) return <h1>loading</h1>;
   return (
     <>
       <HeaderUser />
@@ -32,19 +33,24 @@ export default function Notes() {
           <AiFillPlusCircle color="#C50B0B" font-size={30} />
         </Title>
         <Row />
-        <h2 className="zeroNotes">There are no notes yet, create one.</h2>
-        <Note>
-          <h1>WHAT I LEARNED FROM SAPIENS’BOOK</h1>
-          <DataNote>
-            <Date>
-              <h2>Date: 01/10/22</h2>
-            </Date>
-            <Progress>
-              <h2>Progress: 01/04</h2>
-            </Progress>
-          </DataNote>
-        </Note>
-        <Row />
+        {notes.length === 0
+          ? <h2 className="zeroNotes">There are no notes yet, create one.</h2>
+          : notes.map((note) => (
+            <>
+              <Note>
+                <h1>{note.title}</h1>
+                <DataNote>
+                  <Date>
+                    <h2>{`Date: ${note.date}`}</h2>
+                  </Date>
+                  <Progress>
+                    <h2>{`Progress: ${note.progress}`}</h2>
+                  </Progress>
+                </DataNote>
+              </Note>
+              <Row />
+            </>
+          ))}
       </Container>
     </>
   );
