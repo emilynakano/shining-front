@@ -11,6 +11,7 @@ export default function Notes() {
   const navigate = useNavigate();
   const [click, setClick] = useState(false);
   const [notes, setNotes] = useState(false);
+  const [atualization, setAtualization] = useState(false);
   useEffect(() => {
     const token = localStorage.getItem('@shining:token');
     const config = {
@@ -25,7 +26,7 @@ export default function Notes() {
         navigate('/sign-in');
       }
     });
-  }, []);
+  }, [atualization]);
   if (!notes) return <h1>loading</h1>;
   return (
     <>
@@ -35,8 +36,12 @@ export default function Notes() {
           <h2>NOTES</h2>
           <AiFillPlusCircle color="#C50B0B" font-size={30} onClick={() => setClick(!click)} />
         </Title>
-        <CreateNote click={click} setClick={setClick} />
-
+        <CreateNote
+          click={click}
+          setClick={setClick}
+          atualization={atualization}
+          setAtualization={setAtualization}
+        />
         <Row />
         {notes.length === 0
           ? <h2 className="zeroNotes">There are no notes yet, create one.</h2>

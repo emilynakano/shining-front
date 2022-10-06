@@ -8,7 +8,8 @@ export default function Note({ note }) {
   return (
     <>
       <Container className="hover" onClick={() => (click ? setClick(false) : setClick(true))}>
-        <h1>{note.title}</h1>
+        <Title><h1>{note.title}</h1></Title>
+
         <DataNote>
           <Date>
             <h2>{`Date: ${note.date}`}</h2>
@@ -42,6 +43,12 @@ const Content = styled.div`
     padding: 15px;
     background: white;
     border-radius: 5px;
+`;
+
+const Title = styled.div`
+  white-space:nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 const Row = styled.div`

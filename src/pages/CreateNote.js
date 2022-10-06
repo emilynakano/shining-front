@@ -5,10 +5,12 @@ import MDEditor from '@uiw/react-md-editor';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import api from '../services/api';
 
-export default function CreateNote({ click, setClick }) {
+export default function CreateNote({
+  click, setClick, setAtualization, atualization,
+}) {
   const mkString = `### Your title here
   
   Lorem ipsum, or lipsum as it is sometimes known. 
@@ -36,7 +38,11 @@ export default function CreateNote({ click, setClick }) {
       },
     };
     const promise = api.post('notes', { content: value, title }, config);
-    promise.then((res) => console.log('deu certo'));
+    promise.then((res) => {
+      setAtualization(!atualization);
+      toast.success('Note created successfully!');
+      setClick(false);
+    });
     promise.catch((err) => {
 
     });
