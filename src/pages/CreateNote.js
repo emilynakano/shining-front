@@ -24,8 +24,8 @@ const Editor = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 18px;
- 
+  height: 55vh;
+  background-color:red;
   h1 {
     font-family: 'Roboto';
     font-style: normal;
@@ -33,8 +33,6 @@ const Editor = styled.div`
     font-size: 25px;
     color: white;
   }
-
-  
 `;
 const Submit = styled.div`
   display: flex;
@@ -45,17 +43,26 @@ const Button = styled.button`
   width: 120px;
   height: 25px;
   border: none;
-  background: #FFFFFF;
-  border-radius: 50px;
+  background: #4FB5F7;
+  border-radius: 50px 50px 0 50px;
+  position:relative;
+  z-index:12;
+  margin-top: -26px;
+
+  @keyframes go-back {
+  from {
+    transform: translateY(-3px);
+  }
+  to {
+    transform: translateY(0);
+  }
+  }
+  animation: go-back 1s infinite alternate;
+
   span {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 500;
     font-size: 13px;
   }
-`;
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
