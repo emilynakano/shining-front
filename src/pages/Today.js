@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import HeaderUser from '../components/HeaderUser';
-import Note from '../components/Note';
+import NoteToday from '../components/NoteToday';
 import api from '../services/api';
 
 export default function Today() {
@@ -38,7 +38,7 @@ export default function Today() {
         {notes.length === 0
           ? <h2 className="zeroNotes">There are no notes yet, create one.</h2>
           : notes.map((note) => (
-            <Note note={note} />
+            <NoteToday note={note} />
           ))}
       </Container>
 
