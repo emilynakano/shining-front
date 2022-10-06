@@ -9,7 +9,6 @@ export default function Note({ note }) {
     <>
       <Container className="hover" onClick={() => (click ? setClick(false) : setClick(true))}>
         <Title><h1>{note.title}</h1></Title>
-
         <DataNote>
           <Date>
             <h2>{`Date: ${note.date}`}</h2>
