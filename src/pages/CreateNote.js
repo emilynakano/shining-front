@@ -2,12 +2,14 @@
 /* eslint-disable consistent-return */
 /* eslint-disable react/no-unescaped-entities */
 import MDEditor from '@uiw/react-md-editor';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
+import { Navigate, useNavigate } from 'react-router-dom';
+import api from '../services/api';
 
-export default function CreateNote({ click }) {
-  const mkString = `### Your value here
+export default function CreateNote({ click, setClick }) {
+  const mkString = `### Your title here
   
   Lorem ipsum, or lipsum as it is sometimes known. 
   `;
@@ -26,6 +28,18 @@ export default function CreateNote({ click }) {
 
   function createNote() {
     const title = getTitle(value);
+    setValue(mkString);
+    const token = localStorage.getItem('@shining:token');
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const promise = api.post('notes', { content: value, title }, config);
+    promise.then((res) => console.log('deu certo'));
+    promise.catch((err) => {
+
+    });
   }
 
   return (

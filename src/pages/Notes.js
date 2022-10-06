@@ -35,7 +35,7 @@ export default function Notes() {
           <h2>NOTES</h2>
           <AiFillPlusCircle color="#C50B0B" font-size={30} onClick={() => setClick(!click)} />
         </Title>
-        <CreateNote click={click} />
+        <CreateNote click={click} setClick={setClick} />
 
         <Row />
         {notes.length === 0
