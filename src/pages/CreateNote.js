@@ -2,10 +2,11 @@
 /* eslint-disable consistent-return */
 /* eslint-disable react/no-unescaped-entities */
 import MDEditor from '@uiw/react-md-editor';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 
 export default function CreateNote({
@@ -20,6 +21,9 @@ export default function CreateNote({
   function getTitle(str) {
     const stringArray = str.split('\n');
     let title = '';
+    if (stringArray[0][0] !== '#') {
+      return '';
+    }
     for (let i = 0; i < stringArray[0].length; i++) {
       if (stringArray[0][i] !== '#') {
         title += stringArray[0][i];
@@ -27,9 +31,11 @@ export default function CreateNote({
     }
     return title;
   }
-
   function createNote() {
     const title = getTitle(value);
+    if (title === '') {
+      return toast.error('Insert a correct title!');
+    }
     setValue(mkString);
     const token = localStorage.getItem('@shining:token');
     const config = {
@@ -44,7 +50,9 @@ export default function CreateNote({
       setClick(false);
     });
     promise.catch((err) => {
-
+      if (err.response.status === 409) {
+        toast.error('You already have a note with this title!');
+      }
     });
   }
 
