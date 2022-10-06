@@ -1,3 +1,5 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable consistent-return */
 /* eslint-disable react/no-unescaped-entities */
 import MDEditor from '@uiw/react-md-editor';
 import { useState } from 'react';
@@ -5,14 +7,33 @@ import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
 
 export default function CreateNote({ click }) {
-  const [value, setValue] = useState('## Hello World!');
+  const mkString = `### Your value here
+  
+  Lorem ipsum, or lipsum as it is sometimes known. 
+  `;
+  const [value, setValue] = useState(mkString);
+
+  function getTitle(str) {
+    const stringArray = str.split('\n');
+    let title = '';
+    for (let i = 0; i < stringArray[0].length; i++) {
+      if (stringArray[0][i] !== '#') {
+        title += stringArray[0][i];
+      }
+    }
+    return title;
+  }
+
+  function createNote() {
+    const title = getTitle(value);
+  }
 
   return (
     <Fade left opposite collapse when={click}>
       <Editor data-color-mode="light">
         <MDEditor height="55vh" value={value} onChange={setValue} />
         <Submit>
-          <Button>
+          <Button onClick={() => createNote()}>
             <span>Create</span>
           </Button>
         </Submit>
