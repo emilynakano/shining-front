@@ -5,9 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import HeaderUser from '../components/HeaderUser';
 import api from '../services/api';
 import Note from '../components/Note';
+import CreateNote from './CreateNote';
 
 export default function Notes() {
   const navigate = useNavigate();
+  const [click, setClick] = useState(false);
   const [notes, setNotes] = useState(false);
   useEffect(() => {
     const token = localStorage.getItem('@shining:token');
@@ -31,8 +33,10 @@ export default function Notes() {
       <Container>
         <Title>
           <h2>NOTES</h2>
-          <AiFillPlusCircle color="#C50B0B" font-size={30} />
+          <AiFillPlusCircle color="#C50B0B" font-size={30} onClick={() => setClick(!click)} />
         </Title>
+        <CreateNote click={click} />
+
         <Row />
         {notes.length === 0
           ? <h2 className="zeroNotes">There are no notes yet, create one.</h2>

@@ -2,32 +2,26 @@
 import MDEditor from '@uiw/react-md-editor';
 import { useState } from 'react';
 import styled from 'styled-components';
-import HeaderUser from '../components/HeaderUser';
+import Fade from 'react-reveal/Fade';
 
-export default function CreateNote() {
+export default function CreateNote({ click }) {
   const [value, setValue] = useState('## Hello World!');
 
   return (
-    <>
-      <HeaderUser />
-      <Container>
-        <Editor data-color-mode="light">
-          <h1>
-            Create the note you won't forget!
-          </h1>
-          <MDEditor height="55vh" value={value} onChange={setValue} />
-          <Submit>
-            <Button>
-              <span>Create</span>
-            </Button>
-          </Submit>
-        </Editor>
-      </Container>
-    </>
+    <Fade left opposite collapse when={click}>
+      <Editor data-color-mode="light">
+        <MDEditor height="55vh" value={value} onChange={setValue} />
+        <Submit>
+          <Button>
+            <span>Create</span>
+          </Button>
+        </Submit>
+      </Editor>
+    </Fade>
   );
 }
 const Editor = styled.div`
-  width: 85%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -61,7 +55,6 @@ const Button = styled.button`
   }
 `;
 const Container = styled.div`
-  margin-top: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
