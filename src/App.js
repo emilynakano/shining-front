@@ -8,6 +8,7 @@ import SignIn from './pages/SignIn';
 import Home from './pages/Home';
 import UserHome from './pages/UserHome';
 import Notes from './pages/Notes';
+import Today from './pages/Today';
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/home" element={<UserHome />} />
         <Route path="/notes" element={<Notes />} />
+        <Route path="/notes/today" element={<Today />} />
       </Routes>
     </BrowserRouter>
 
