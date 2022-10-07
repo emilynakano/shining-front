@@ -47,7 +47,7 @@ function NoteContent({
         setAtualization(!atualization);
         setReview(false);
         setClick(false);
-      }, [2000]);
+      }, [2500]);
     });
     promise.catch((err) => {
       console.log('err');
