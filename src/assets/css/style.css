@@ -29,3 +29,17 @@ h1 {
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
 }
+
+
+body::-webkit-scrollbar {
+    width: 3px;               
+}
+  
+body::-webkit-scrollbar-track {
+    background: black;       
+}
+  
+body::-webkit-scrollbar-thumb {
+    border-radius: 50px;       
+    border: 3px solid rgb(128, 5, 0); 
+}
