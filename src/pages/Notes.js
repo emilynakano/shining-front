@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import HeaderUser from '../components/HeaderUser';
 import api from '../services/api';
 import Note from '../components/Note';
-import CreateNote from './CreateNote';
+import CreateNote from '../components/CreateNote';
 
 export default function Notes() {
   const navigate = useNavigate();
