@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import Fade from 'react-reveal/Fade';
 import HeaderUser from '../components/HeaderUser';
 import NoteToday from '../components/NoteToday';
 import api from '../services/api';
@@ -35,11 +36,23 @@ export default function Today() {
           <h2>TODAY</h2>
         </Title>
         <Row />
+
         {notes.length === 0
-          ? <h2 className="zeroNotes">There are no notes yet, create one.</h2>
+          ? (
+            <Fade left cascade>
+              <h2 className="zeroNotes">There are no notes to review now.</h2>
+            </Fade>
+          )
           : notes.map((note) => (
-            <NoteToday note={note} />
+
+            <NoteToday
+              atualization={atualization}
+              setAtualization={setAtualization}
+              note={note}
+            />
+
           ))}
+
       </Container>
 
     </>

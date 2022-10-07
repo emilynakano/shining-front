@@ -3,23 +3,57 @@ import styled from 'styled-components';
 import MDEditor from '@uiw/react-md-editor';
 import Fade from 'react-reveal/Fade';
 import { AiFillCheckCircle } from 'react-icons/ai';
+import { toast } from 'react-toastify';
+import api from '../services/api';
 
-export default function NoteToday({ note }) {
+export default function NoteToday({ note, atualization, setAtualization }) {
   const [click, setClick] = useState(false);
   return (
     <>
-      <Container className="hover" onClick={() => (click ? setClick(false) : setClick(true))}>
+      <Container className="hover" onClick={() => setClick(!click)}>
         <Title><h1>{note.title}</h1></Title>
       </Container>
       <Row />
-      <NoteContent click={click} content={note.content} />
+      <NoteContent
+        atualization={atualization}
+        setAtualization={setAtualization}
+        note={note}
+        setClick={setClick}
+        click={click}
+        content={note.content}
+      />
     </>
 
   );
 }
 
-function NoteContent({ content, click }) {
+function NoteContent({
+  setClick, content, click, note, atualization, setAtualization,
+}) {
   const [review, setReview] = useState(false);
+  function Review() {
+    const token = localStorage.getItem('@shining:token');
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    console.log(review);
+    const promise = api.patch(`notes/${note.id}/review`, {}, config);
+    promise.then((res) => {
+      toast.success('Note successfully revised!');
+      setReview(!review);
+      setTimeout(() => {
+        setAtualization(!atualization);
+        setReview(false);
+        setClick(false);
+      }, [2000]);
+    });
+    promise.catch((err) => {
+      console.log('err');
+    });
+  }
+
   return (
     <Fade left opposite collapse when={click}>
       <Content>
@@ -28,7 +62,7 @@ function NoteContent({ content, click }) {
           linkTarget="_blank"
         />
         <Icon review={review}>
-          <AiFillCheckCircle className="icon" />
+          <AiFillCheckCircle onClick={() => Review()} className="icon" />
         </Icon>
       </Content>
     </Fade>
