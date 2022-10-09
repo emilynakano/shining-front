@@ -53,7 +53,7 @@ const Notes = styled.div`
   max-width: 420px;
 
   background: #D9D9D9;
-  border-radius: 30px;
+  border-radius: 10px;
 
   padding: 20px;
 
@@ -69,6 +69,10 @@ const Notes = styled.div`
   transition: box-shadow 0.4s;
   &:hover {
     box-shadow: 10px 9px 37px 6px rgba(179,45,45,0.66);
+  }
+
+  @media(max-width:420px) {
+    border-radius:0px;
   }
 `;
 
@@ -88,4 +92,6 @@ const Text = styled.div`
   font-size: 25px;
   font-weight: 700;
   color: white;
+
+  margin-bottom: 10px;
 `;
