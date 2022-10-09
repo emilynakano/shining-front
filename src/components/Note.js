@@ -28,7 +28,7 @@ export default function Note({ note }) {
 function NoteContent({ content, click }) {
   return (
     <Fade left opposite collapse when={click}>
-      <Content>
+      <Content data-color-mode="light">
         <MDEditor.Markdown
           source={content}
           linkTarget="_blank"
