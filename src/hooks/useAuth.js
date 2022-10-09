@@ -3,9 +3,10 @@ import api from '../services/api';
 export async function signIn(user) {
   const promise = await api.post('sign-in', user);
 
-  const { accessToken } = promise.data;
+  const { accessToken, username } = promise.data;
 
   localStorage.setItem('@shining:token', accessToken);
+  localStorage.setItem('@shining:username', username);
 }
 
 export async function signUpAndLogin(user) {
