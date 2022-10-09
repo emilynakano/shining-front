@@ -3,13 +3,19 @@ import styled from 'styled-components';
 import HeaderUser from '../components/HeaderUser';
 
 export default function UserHome() {
+  const username = localStorage.getItem('@shining:username');
   const navigate = useNavigate();
   return (
     <>
       <HeaderUser />
       <Container>
         <Text>
-          <h2>Welcome, Emily!</h2>
+          <h2>
+            Welcome,
+            {' '}
+            {username}
+            !
+          </h2>
           <h2>Choose one of the options.</h2>
         </Text>
         <Notes onClick={() => navigate('/notes')}>
