@@ -1,6 +1,3 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable consistent-return */
-/* eslint-disable react/no-unescaped-entities */
 import MDEditor from '@uiw/react-md-editor';
 import { useState } from 'react';
 import styled from 'styled-components';

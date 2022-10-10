@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-bind */
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
@@ -29,7 +28,10 @@ export default function SignUp() {
 
     try {
       await signUpAndLogin(user);
-      navigate('/home');
+      toast.success('Account created successfully!');
+      setTimeout(() => {
+        navigate('/home');
+      }, [3500]);
     } catch (error) {
       toast.error(
         'Invalid email, choose another one',

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import Zoom from 'react-reveal/Zoom';

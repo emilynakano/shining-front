@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo.png';

@@ -18,6 +18,10 @@
         "react"
     ],
     "rules": {
+        "react/no-unescaped-entities": "off",
+        "jsx-a11y/no-noninteractive-element-interactions": "off",
+        "consistent-return": "off",
+        "no-plusplus": "off",
         "react/jsx-no-bind": "off",
         "react/button-has-type": "off",
         "react/react-in-jsx-scope": "off",
