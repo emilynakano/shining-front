@@ -56,9 +56,9 @@ export default function CreateNote({
   return (
     <Fade left opposite collapse when={click}>
       <Editor data-color-mode="light">
-        <MDEditor height="55vh" value={value} onChange={setValue} />
+        <MDEditor data-cy="editor" height="55vh" value={value} onChange={setValue} />
         <Submit>
-          <Button onClick={() => createNote()}>
+          <Button data-cy="button-submit" onClick={() => createNote()}>
             <span>Create</span>
           </Button>
         </Submit>

@@ -34,7 +34,12 @@ export default function Notes() {
       <Container>
         <Title>
           <h2>NOTES</h2>
-          <AiFillPlusCircle color="#C50B0B" font-size={30} onClick={() => setClick(!click)} />
+          <AiFillPlusCircle
+            data-cy="button-add-note"
+            color="#C50B0B"
+            font-size={30}
+            onClick={() => setClick(!click)}
+          />
         </Title>
         <CreateNote
           click={click}

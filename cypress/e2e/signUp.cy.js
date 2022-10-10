@@ -24,6 +24,7 @@ describe('sign up user', () => {
     cy.get("[data-cy='button-submit']").click();
     cy.wait('@signUp');
 
+    cy.get('.Toastify').should('contain', 'Account created successfully!');
     cy.url().should('equal', 'http://localhost:3000/home');
   });
 });
