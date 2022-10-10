@@ -31,6 +31,8 @@ const SignIn = styled.div`
     border: 2px solid #D9D9D9;
     h1 {
         color: white;
+        font-weight: 600;
+        font-size: 15px;
     }
     display:flex;
     align-items: center;
@@ -48,8 +50,8 @@ const SignUp = styled(SignIn)`
   h1 {
     text-align:center;
     color: black;
-    font-weight: 700;
-    font-size: 13px;
+    font-weight: 600;
+    font-size: 15px;
   }
   @media (max-width: 465px) {
     display: none
