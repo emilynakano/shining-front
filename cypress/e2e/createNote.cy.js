@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-import { faker } from '@faker-js/faker';
 
 describe('create a note', () => {
   beforeEach(() => {
