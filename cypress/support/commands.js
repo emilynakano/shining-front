@@ -11,8 +11,34 @@
 //
 //
 // -- This is a parent command --
+import { faker } from '@faker-js/faker';
+
 Cypress.Commands.add('resetDatabase', () => {
   cy.request('POST', 'http://localhost:5000/E2E/reset');
+});
+
+Cypress.Commands.add('setUpToken', () => {
+  const user = {
+    name: faker.name.firstName(),
+    email: faker.internet.email(),
+    password: faker.internet.password(),
+  };
+
+  cy.request('POST', 'http://localhost:5000/sign-up', {
+    name: user.name,
+    email: user.email,
+    password: user.password,
+    confirmPassword: user.password,
+  });
+
+  cy.request('POST', 'http://localhost:5000/sign-in', {
+    email: user.email,
+    password: user.password,
+  }).then((res) => {
+    const { accessToken, username } = res.body;
+    localStorage.setItem('@shining:token', accessToken);
+    localStorage.setItem('@shining:username', username);
+  });
 });
 //
 //
