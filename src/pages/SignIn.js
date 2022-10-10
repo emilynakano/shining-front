@@ -45,6 +45,7 @@ export default function SignIn() {
           value={user.email}
           onChange={ChangeInput}
           required
+          data-cy="input-email"
         />
         <Input
           type="password"
@@ -53,8 +54,9 @@ export default function SignIn() {
           value={user.password}
           onChange={ChangeInput}
           required
+          data-cy="input-password"
         />
-        <Button type="submit">
+        <Button data-cy="button-submit" type="submit">
           <span>Log in</span>
         </Button>
       </Form>

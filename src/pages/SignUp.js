@@ -51,6 +51,7 @@ export default function SignUp() {
           required
           value={user.name}
           onChange={ChangeInput}
+          data-cy="input-name"
         />
         <Input
           type="email"
@@ -59,6 +60,7 @@ export default function SignUp() {
           required
           value={user.email}
           onChange={ChangeInput}
+          data-cy="input-email"
         />
         <Input
           type="password"
@@ -68,6 +70,7 @@ export default function SignUp() {
           minLength={6}
           value={user.password}
           onChange={ChangeInput}
+          data-cy="input-password"
         />
         <Input
           type="password"
@@ -77,8 +80,9 @@ export default function SignUp() {
           pattern={user.password}
           value={user.confirmPassword}
           onChange={ChangeInput}
+          data-cy="input-confirm-password"
         />
-        <Button type="submit">
+        <Button data-cy="button-submit" type="submit">
           <span>Create Account</span>
         </Button>
       </Form>

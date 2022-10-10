@@ -8,10 +8,10 @@ export default function SmallHeader() {
     <Container>
       <img src={logo} alt="shinning" />
       <Auth>
-        <SignIn className="color" onClick={() => navigate('/sign-in')}>
+        <SignIn data-cy="sign-in" className="color" onClick={() => navigate('/sign-in')}>
           <h1>sign-in</h1>
         </SignIn>
-        <SignUp className="background" onClick={() => navigate('/sign-up')}>
+        <SignUp data-cy="sign-up" className="background" onClick={() => navigate('/sign-up')}>
           <h1>get started</h1>
         </SignUp>
       </Auth>
