@@ -25,7 +25,7 @@ export default function UserHome() {
             notes and create them.
           </h2>
         </Notes>
-        <Today>
+        <Today onClick={() => navigate('/notes/today')}>
           <h2>TODAY</h2>
           <h2 className="description">
             Here you see all your notes that need
