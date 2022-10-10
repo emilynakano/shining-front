@@ -11,6 +11,7 @@ import Form from '../components/form';
 import { signUpAndLogin } from '../hooks/useAuth';
 
 export default function SignUp() {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [user, setUser] = useState({
     name: '',
@@ -25,7 +26,7 @@ export default function SignUp() {
 
   async function HandleSubmit(e) {
     e.preventDefault();
-
+    setLoading(true);
     try {
       await signUpAndLogin(user);
       toast.success('Account created successfully!');
@@ -33,6 +34,7 @@ export default function SignUp() {
         navigate('/home');
       }, [3500]);
     } catch (error) {
+      setLoading(false);
       toast.error(
         'Invalid email, choose another one',
       );
@@ -84,9 +86,7 @@ export default function SignUp() {
           onChange={ChangeInput}
           data-cy="input-confirm-password"
         />
-        <Button data-cy="button-submit" type="submit">
-          <span>Create Account</span>
-        </Button>
+        <Button text="Create Account" loading={loading} data-cy="button-submit" type="submit" />
       </Form>
     </>
 

@@ -9,6 +9,7 @@ import Header from '../components/Header';
 import Title from '../components/form/Title';
 
 export default function SignIn() {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: '',
@@ -20,11 +21,12 @@ export default function SignIn() {
   }
   async function HandleSubmit(e) {
     e.preventDefault();
-
+    setLoading(true);
     try {
       await signIn(user);
       navigate('/home');
     } catch (error) {
+      setLoading(false);
       toast.error(
         'Invalid email or password, check your credentials',
       );
@@ -56,9 +58,7 @@ export default function SignIn() {
           required
           data-cy="input-password"
         />
-        <Button data-cy="button-submit" type="submit">
-          <span>Log in</span>
-        </Button>
+        <Button text="Log in" loading={loading} data-cy="button-submit" type="submit" />
       </Form>
     </>
 
