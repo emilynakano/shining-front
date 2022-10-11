@@ -87,10 +87,6 @@ const Notes = styled.div`
   &:hover {
     border-color: rgba(179,45,45,0.66);
   }
-
-  @media(max-width:420px) {
-    border-radius:0px;
-  }
 `;
 
 const Today = styled(Notes)`
