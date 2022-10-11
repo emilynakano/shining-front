@@ -8,29 +8,16 @@ import api from '../services/api';
 export default function CreateNote({
   click, setClick, setAtualization, atualization,
 }) {
-  const mkString = `### Your title here
+  const mkString = `### Topics
   
   Lorem ipsum, or lipsum as it is sometimes known. 
   `;
   const [value, setValue] = useState(mkString);
+  const [title, setTitle] = useState('');
 
-  function getTitle(str) {
-    const stringArray = str.split('\n');
-    let title = '';
-    if (stringArray[0][0] !== '#') {
-      return '';
-    }
-    for (let i = 0; i < stringArray[0].length; i++) {
-      if (stringArray[0][i] !== '#') {
-        title += stringArray[0][i];
-      }
-    }
-    return title;
-  }
   function createNote() {
-    const title = getTitle(value);
     if (title === '') {
-      return toast.error('Insert a correct title!');
+      return toast.error('Insert a title!');
     }
     setValue(mkString);
     const token = localStorage.getItem('@shining:token');
@@ -55,6 +42,13 @@ export default function CreateNote({
   return (
     <Fade left opposite collapse when={click}>
       <Editor data-color-mode="light">
+        <Title>
+          <Input
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Insert your title here"
+          />
+        </Title>
         <MDEditor data-cy="editor" height="55vh" value={value} onChange={setValue} />
         <Submit>
           <Button data-cy="button-submit" onClick={() => createNote()}>
@@ -70,7 +64,6 @@ const Editor = styled.div`
   display: flex;
   flex-direction: column;
   height: 55vh;
-  background-color:red;
   h1 {
     font-family: 'Roboto';
     font-style: normal;
@@ -83,12 +76,44 @@ const Submit = styled.div`
   display: flex;
   justify-content: end;
 `;
+const Title = styled.div`
+  display: flex;
+  justify-content: start;
+`;
+const Input = styled.input`
+  border-radius: 15px 15px 0 0;
+  font-size:16px; 
+  border-color:#cccccc; 
+  padding: 10px; 
+  padding-bottom: 5px;
+  border-style:hidden; 
+  background-color:#6baaf7; 
+  color:black;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px; 
+  width: 100%;
+
+  &::placeholder {
+    color:black;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+  }
+`;
 const Button = styled.button`
   cursor: pointer;
-  width: 120px;
+  width: 100px;
   height: 25px;
   border: none;
-  background: #4FB5F7;
+  background-color:#6baaf7; 
   border-radius: 50px 50px 0 50px;
   position:relative;
   z-index:12;
@@ -99,7 +124,7 @@ const Button = styled.button`
     transform: translateY(-3px);
   }
   to {
-    transform: translateY(0);
+    transform: translateY(0px);
   }
   }
   animation: go-back 1s infinite alternate;
@@ -108,6 +133,6 @@ const Button = styled.button`
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 500;
-    font-size: 13px;
+    font-size: 14px;
   }
 `;
