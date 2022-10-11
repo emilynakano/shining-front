@@ -7,25 +7,27 @@ export default function Note({ note }) {
   const [click, setClick] = useState(false);
   return (
     <>
-      <Container className="hover" onClick={() => (click ? setClick(false) : setClick(true))}>
-        <Title><h1>{note.title}</h1></Title>
-        <DataNote>
-          <Date>
-            <h2>
-              Date:
-              <h1>{note.date}</h1>
-            </h2>
-          </Date>
-          <Progress progress={note.progress}>
-            <h2>
-              Progress:
-              <h1>
-                {note.progress}
-              </h1>
-            </h2>
-          </Progress>
-        </DataNote>
-      </Container>
+      <Fade>
+        <Container className="hover" onClick={() => (click ? setClick(false) : setClick(true))}>
+          <Title><h1>{note.title}</h1></Title>
+          <DataNote>
+            <Date>
+              <h2>
+                Date:
+                <h1>{note.date}</h1>
+              </h2>
+            </Date>
+            <Progress progress={note.progress}>
+              <h2>
+                Progress:
+                <h1>
+                  {note.progress}
+                </h1>
+              </h2>
+            </Progress>
+          </DataNote>
+        </Container>
+      </Fade>
       <Row />
       <NoteContent click={click} content={note.content} />
     </>
@@ -96,7 +98,7 @@ const Progress = styled.div`
 
 function NoteContent({ content, click }) {
   return (
-    <Fade left opposite collapse when={click}>
+    <Fade opposite collapse when={click}>
       <Content data-color-mode="light">
         <MDEditor.Markdown
           source={content}

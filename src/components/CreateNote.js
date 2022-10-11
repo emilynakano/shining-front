@@ -40,7 +40,7 @@ export default function CreateNote({
   }
 
   return (
-    <Fade left opposite collapse when={click}>
+    <Fade opposite collapse when={click}>
       <Editor data-color-mode="light">
         <Title>
           <Input

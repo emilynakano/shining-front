@@ -55,7 +55,7 @@ function NoteContent({
   }
 
   return (
-    <Fade left opposite collapse when={click}>
+    <Fade opposite collapse when={click}>
       <Content data-color-mode="light">
         <MDEditor.Markdown
           source={content}

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Fade from 'react-reveal/Fade';
 import HeaderUser from '../components/HeaderUser';
 import api from '../services/api';
 import Note from '../components/Note';
@@ -49,9 +50,15 @@ export default function Notes() {
         />
         <Row />
         {notes.length === 0
-          ? <h2 className="zeroNotes">There are no notes yet, create one.</h2>
+          ? (
+            <Fade left cascade>
+              <h2 className="zeroNotes">There are no notes yet, create one.</h2>
+            </Fade>
+          )
           : notes.map((note) => (
+
             <Note note={note} />
+
           ))}
       </Container>
     </>

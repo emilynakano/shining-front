@@ -44,12 +44,13 @@ export default function Today() {
             </Fade>
           )
           : notes.map((note) => (
-
-            <NoteToday
-              atualization={atualization}
-              setAtualization={setAtualization}
-              note={note}
-            />
+            <Fade>
+              <NoteToday
+                atualization={atualization}
+                setAtualization={setAtualization}
+                note={note}
+              />
+            </Fade>
 
           ))}
 
