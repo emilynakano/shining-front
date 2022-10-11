@@ -7,6 +7,7 @@ import HeaderUser from '../components/HeaderUser';
 import api from '../services/api';
 import Note from '../components/Note';
 import CreateNote from '../components/CreateNote';
+import Loading from '../components/Loading';
 
 export default function Notes() {
   const navigate = useNavigate();
@@ -28,7 +29,14 @@ export default function Notes() {
       }
     });
   }, [atualization]);
-  if (!notes) return <h1>loading</h1>;
+  if (!notes) {
+    return (
+      <>
+        <HeaderUser />
+        <Loading />
+      </>
+    );
+  }
   return (
     <>
       <HeaderUser />

@@ -5,6 +5,7 @@ import Fade from 'react-reveal/Fade';
 import HeaderUser from '../components/HeaderUser';
 import NoteToday from '../components/NoteToday';
 import api from '../services/api';
+import Loading from '../components/Loading';
 
 export default function Today() {
   const navigate = useNavigate();
@@ -26,7 +27,14 @@ export default function Today() {
       }
     });
   }, [atualization]);
-  if (!notes) return <h1>loading</h1>;
+  if (!notes) {
+    return (
+      <>
+        <HeaderUser />
+        <Loading />
+      </>
+    );
+  }
 
   return (
     <>
