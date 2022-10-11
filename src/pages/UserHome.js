@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { FcCalendar, FcKindle } from 'react-icons/fc';
 import HeaderUser from '../components/HeaderUser';
 
 export default function UserHome() {
@@ -18,20 +19,24 @@ export default function UserHome() {
           </h2>
           <h2>Choose one of the options.</h2>
         </Text>
-        <Notes onClick={() => navigate('/notes')}>
-          <h2>NOTES</h2>
-          <h2 className="description">
-            Here you can see all your
-            notes and create them.
-          </h2>
-        </Notes>
-        <Today onClick={() => navigate('/notes/today')}>
-          <h2>TODAY</h2>
-          <h2 className="description">
-            Here you see all your notes that need
-            to be reviewed today
-          </h2>
-        </Today>
+        <Main>
+          <Notes onClick={() => navigate('/notes')}>
+            <FcKindle size={60} />
+            <h2>NOTES</h2>
+            <h2 className="description">
+              See all your
+              notes and create them.
+            </h2>
+          </Notes>
+          <Today onClick={() => navigate('/notes/today')}>
+            <FcCalendar size={60} />
+            <h2>TODAY</h2>
+            <h2 className="description">
+              See all your notes that need
+              to be reviewed today.
+            </h2>
+          </Today>
+        </Main>
       </Container>
     </>
   );
@@ -44,31 +49,43 @@ const Container = styled.div`
 
   gap: 20px;
 `;
+const Main = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  @media(max-width:640px) {
+    padding-bottom:20px;
+    flex-direction: column;
+  }
+`;
 const Notes = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items:center;
+  justify-content:space-between;
+  text-align:center;
 
-  width: 100%;
-  max-width: 420px;
+  width: 300px;
+  height: 200px;
 
-  background: #D9D9D9;
-  border-radius: 10px;
-
+  opacity: 0.8;
+  border: 2px solid #FFFFFF;
+  border-radius: 30px;
   padding: 20px;
 
   font-size: 20px;
   font-weight: 600;
-  color: black;
+  color: white;
 
   .description {
     font-weight: 400;
   }
 
   cursor: pointer;
-  transition: box-shadow 0.4s;
+  transition: border-color 0.4s;
   &:hover {
-    box-shadow: 10px 9px 37px 6px rgba(179,45,45,0.66);
+    border-color: rgba(179,45,45,0.66);
   }
 
   @media(max-width:420px) {
@@ -77,7 +94,6 @@ const Notes = styled.div`
 `;
 
 const Today = styled(Notes)`
-  
 `;
 const Text = styled.div`
   display: flex;
@@ -93,5 +109,5 @@ const Text = styled.div`
   font-weight: 700;
   color: white;
 
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 `;
