@@ -11,10 +11,18 @@ export default function Note({ note }) {
         <Title><h1>{note.title}</h1></Title>
         <DataNote>
           <Date>
-            <h2>{`Date: ${note.date}`}</h2>
+            <h2>
+              Date:
+              <h1>{note.date}</h1>
+            </h2>
           </Date>
-          <Progress>
-            <h2>{`Progress: ${note.progress}`}</h2>
+          <Progress progress={note.progress}>
+            <h2>
+              Progress:
+              <h1>
+                {note.progress}
+              </h1>
+            </h2>
           </Progress>
         </DataNote>
       </Container>
@@ -22,19 +30,6 @@ export default function Note({ note }) {
       <NoteContent click={click} content={note.content} />
     </>
 
-  );
-}
-
-function NoteContent({ content, click }) {
-  return (
-    <Fade left opposite collapse when={click}>
-      <Content data-color-mode="light">
-        <MDEditor.Markdown
-          source={content}
-          linkTarget="_blank"
-        />
-      </Content>
-    </Fade>
   );
 }
 
@@ -79,20 +74,35 @@ const Container = styled.div`
 const DataNote = styled.div`
     display: flex;
     gap: 14px;
+    h2 {
+      display:flex;
+      flex-direction:row;
+      align-items:center;
+      gap: 4px;
+    }
 `;
 
 const Date = styled.div`
     h1 {
-    color: white;
-    font-size: 13px;
-    margin-top: 5px
+      color: ${(props) => (props.progress === 'lost' ? 'red' : '#60BFE6')};
     }
 `;
 
 const Progress = styled.div`
     h1 {
-    color: white;
-    font-size: 13px;
-    margin-top: 5px
+    color: ${(props) => (props.progress === 'lost' ? 'red' : '#2FDB2F')};
     }
 `;
+
+function NoteContent({ content, click }) {
+  return (
+    <Fade left opposite collapse when={click}>
+      <Content data-color-mode="light">
+        <MDEditor.Markdown
+          source={content}
+          linkTarget="_blank"
+        />
+      </Content>
+    </Fade>
+  );
+}
