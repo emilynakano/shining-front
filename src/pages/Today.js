@@ -23,39 +23,32 @@ export default function Today() {
   }, [atualization]);
   if (!notes) {
     return (
-      <>
-        <HeaderUser />
-        <Loading />
-      </>
+      <Loading />
     );
   }
 
   return (
-    <>
-      <HeaderUser />
-      <Container>
-        <Title>
-          <h2>TODAY</h2>
-        </Title>
-        <Row />
+    <Container>
+      <Title>
+        <h2>TODAY</h2>
+      </Title>
+      <Row />
 
-        {notes.length === 0
-          ? (
-            <Fade left cascade>
-              <h2 className="zeroNotes">There are no notes to review now.</h2>
-            </Fade>
-          )
-          : notes.map((note) => (
-            <NoteToday
-              atualization={atualization}
-              setAtualization={setAtualization}
-              note={note}
-            />
-          ))}
+      {notes.length === 0
+        ? (
+          <Fade left cascade>
+            <h2 className="zeroNotes">There are no notes to review now.</h2>
+          </Fade>
+        )
+        : notes.map((note) => (
+          <NoteToday
+            atualization={atualization}
+            setAtualization={setAtualization}
+            note={note}
+          />
+        ))}
 
-      </Container>
-
-    </>
+    </Container>
   );
 }
 const Row = styled.div`

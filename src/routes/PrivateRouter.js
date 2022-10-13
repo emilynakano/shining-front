@@ -1,5 +1,12 @@
+import HeaderUser from '../components/HeaderUser';
+
 function PrivateRouter({ children }) {
-  return children;
+  return (
+    <>
+      <HeaderUser />
+      {children}
+    </>
+  );
 }
 
 export default PrivateRouter;

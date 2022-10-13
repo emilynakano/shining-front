@@ -25,45 +25,39 @@ export default function Notes() {
   }, [atualization]);
   if (!notes) {
     return (
-      <>
-        <HeaderUser />
-        <Loading />
-      </>
+      <Loading />
     );
   }
   return (
-    <>
-      <HeaderUser />
-      <Container>
-        <Title>
-          <h2>NOTES</h2>
-          <AiFillPlusCircle
-            data-cy="button-add-note"
-            color="#C50B0B"
-            font-size={30}
-            onClick={() => setClick(!click)}
-          />
-        </Title>
-        <CreateNote
-          click={click}
-          setClick={setClick}
-          atualization={atualization}
-          setAtualization={setAtualization}
+    <Container>
+      <Title>
+        <h2>NOTES</h2>
+        <AiFillPlusCircle
+          data-cy="button-add-note"
+          color="#C50B0B"
+          font-size={30}
+          onClick={() => setClick(!click)}
         />
-        <Row />
-        {notes.length === 0
-          ? (
-            <Fade left cascade>
-              <h2 className="zeroNotes">There are no notes yet, create one.</h2>
-            </Fade>
-          )
-          : notes.map((note) => (
+      </Title>
+      <CreateNote
+        click={click}
+        setClick={setClick}
+        atualization={atualization}
+        setAtualization={setAtualization}
+      />
+      <Row />
+      {notes.length === 0
+        ? (
+          <Fade left cascade>
+            <h2 className="zeroNotes">There are no notes yet, create one.</h2>
+          </Fade>
+        )
+        : notes.map((note) => (
 
-            <Note note={note} />
+          <Note note={note} />
 
-          ))}
-      </Container>
-    </>
+        ))}
+    </Container>
   );
 }
 
