@@ -3,7 +3,6 @@ import { AiFillPlusCircle } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
-import HeaderUser from '../components/HeaderUser';
 import api from '../services/api';
 import Note from '../components/Note';
 import CreateNote from '../components/CreateNote';

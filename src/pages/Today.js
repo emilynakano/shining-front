@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
-import HeaderUser from '../components/HeaderUser';
 import NoteToday from '../components/NoteToday';
 import api from '../services/api';
 import Loading from '../components/Loading';

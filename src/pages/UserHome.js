@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { FcCalendar, FcKindle } from 'react-icons/fc';
-import HeaderUser from '../components/HeaderUser';
 
 export default function UserHome() {
   const username = localStorage.getItem('@shining:username');
