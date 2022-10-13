@@ -10,9 +10,11 @@ export default function NoteToday({ note, atualization, setAtualization }) {
   const [click, setClick] = useState(false);
   return (
     <>
-      <Container className="hover" onClick={() => setClick(!click)}>
-        <Title><h1>{note.title}</h1></Title>
-      </Container>
+      <Fade>
+        <Container className="hover" onClick={() => setClick(!click)}>
+          <Title><h1>{note.title}</h1></Title>
+        </Container>
+      </Fade>
       <Row />
       <NoteContent
         atualization={atualization}
@@ -32,14 +34,7 @@ function NoteContent({
 }) {
   const [review, setReview] = useState(false);
   function Review() {
-    const token = localStorage.getItem('@shining:token');
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    console.log(review);
-    const promise = api.patch(`notes/${note.id}/review`, {}, config);
+    const promise = api.patch(`notes/${note.id}/review`, {});
     promise.then((res) => {
       toast.success('Note successfully revised!');
       setReview(!review);

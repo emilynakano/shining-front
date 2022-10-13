@@ -13,13 +13,7 @@ export default function Today() {
   const [notes, setNotes] = useState(false);
   const [atualization, setAtualization] = useState(false);
   useEffect(() => {
-    const token = localStorage.getItem('@shining:token');
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const promise = api.get('notes/today', config);
+    const promise = api.get('notes/today');
     promise.then((res) => setNotes(res.data));
     promise.catch((err) => {
       if (err.response.status === 401) {
@@ -52,14 +46,11 @@ export default function Today() {
             </Fade>
           )
           : notes.map((note) => (
-            <Fade>
-              <NoteToday
-                atualization={atualization}
-                setAtualization={setAtualization}
-                note={note}
-              />
-            </Fade>
-
+            <NoteToday
+              atualization={atualization}
+              setAtualization={setAtualization}
+              note={note}
+            />
           ))}
 
       </Container>

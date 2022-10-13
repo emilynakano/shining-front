@@ -15,13 +15,7 @@ export default function Notes() {
   const [notes, setNotes] = useState(false);
   const [atualization, setAtualization] = useState(false);
   useEffect(() => {
-    const token = localStorage.getItem('@shining:token');
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const promise = api.get('notes', config);
+    const promise = api.get('notes');
     promise.then((res) => setNotes(res.data));
     promise.catch((err) => {
       if (err.response.status === 401) {

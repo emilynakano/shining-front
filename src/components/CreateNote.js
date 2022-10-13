@@ -20,13 +20,7 @@ export default function CreateNote({
       return toast.error('Insert a title!');
     }
     setValue(mkString);
-    const token = localStorage.getItem('@shining:token');
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const promise = api.post('notes', { content: value, title }, config);
+    const promise = api.post('notes', { content: value, title });
     promise.then((res) => {
       setAtualization(!atualization);
       toast.success('Note created successfully!');
