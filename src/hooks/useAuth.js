@@ -1,23 +1,39 @@
-import { createContext, useContext, useState } from 'react';
+import {
+  createContext, useCallback, useContext, useState,
+} from 'react';
 import api from '../services/api';
 
 const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
   const [data, setData] = useState(() => {
-    const token = localStorage.getItem('@shining:token');
-    const user = localStorage.getItem('@shining:username');
+    const accessToken = localStorage.getItem('@shining:token');
+    const username = localStorage.getItem('@shining:username');
 
-    if (token && user) {
-      api.defaults.headers.authorization = `Bearer ${token}`;
+    if (accessToken && username) {
+      api.defaults.headers.authorization = `Bearer ${accessToken}`;
 
-      return { token, user };
+      return { accessToken, username };
     }
 
     return {};
   });
+
+  const signIn = useCallback(async (user) => {
+    const promise = await api.post('sign-in', user);
+
+    const { accessToken, username } = promise.data;
+
+    localStorage.setItem('@shining:token', accessToken);
+    localStorage.setItem('@shining:username', username);
+
+    api.defaults.headers.authorization = `Bearer ${accessToken}`;
+
+    setData({ accessToken, username });
+  }, []);
+
   return (
-    <AuthContext.Provider value={{}}>
+    <AuthContext.Provider value={{ signIn }}>
       {children}
     </AuthContext.Provider>
   );
@@ -35,22 +51,22 @@ function useAuth() {
 
 export { AuthProvider, useAuth };
 
-export async function signIn(user) {
-  const promise = await api.post('sign-in', user);
+// export async function signIn(user) {
+//  const promise = await api.post('sign-in', user);
+//
+//  const { accessToken, username } = promise.data;
+//
+//  localStorage.setItem('@shining:token', accessToken);
+//  localStorage.setItem('@shining:username', username);
+// }
 
-  const { accessToken, username } = promise.data;
-
-  localStorage.setItem('@shining:token', accessToken);
-  localStorage.setItem('@shining:username', username);
-}
-
-export async function signUpAndLogin(user) {
-  await api.post('sign-up', user);
-
-  const userLogin = {
-    email: user.email,
-    password: user.password,
-  };
-
-  await signIn(userLogin);
-}
+// export async function signUpAndLogin(user) {
+//  await api.post('sign-up', user);
+//
+//  const userLogin = {
+//   email: user.email,
+//   password: user.password,
+//  };
+//
+// await signIn(userLogin);
+// }
