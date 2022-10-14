@@ -32,8 +32,10 @@ function AuthProvider({ children }) {
     setData({ accessToken, username });
   }, []);
 
+  const auth = !!Object.keys(data).length;
+
   return (
-    <AuthContext.Provider value={{ signIn }}>
+    <AuthContext.Provider value={{ signIn, auth }}>
       {children}
     </AuthContext.Provider>
   );
