@@ -1,9 +1,21 @@
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 import api from '../services/api';
 
 const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
+  const [data, setData] = useState(() => {
+    const token = localStorage.getItem('@shining:token');
+    const user = localStorage.getItem('@shining:username');
+
+    if (token && user) {
+      api.defaults.headers.authorization = `Bearer ${token}`;
+
+      return { token, user };
+    }
+
+    return {};
+  });
   return (
     <AuthContext.Provider value={{}}>
       {children}
