@@ -1,9 +1,13 @@
+import { Navigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 
 function PublicRouter({ children }) {
   const { auth } = useAuth();
-  console.log(auth);
-  return children;
+  return auth
+    ? (
+      <Navigate to="/home" replace />
+    )
+    : children;
 }
 
 export default PublicRouter;
