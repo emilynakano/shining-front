@@ -1,44 +1,40 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { FcCalendar, FcKindle } from 'react-icons/fc';
-import HeaderUser from '../components/HeaderUser';
 
 export default function UserHome() {
   const username = localStorage.getItem('@shining:username');
   const navigate = useNavigate();
   return (
-    <>
-      <HeaderUser />
-      <Container>
-        <Text>
-          <h2>
-            Welcome,
-            {' '}
-            {username}
-            !
+    <Container>
+      <Text>
+        <h2>
+          Welcome,
+          {' '}
+          {username}
+          !
+        </h2>
+        <h2>Choose one of the options.</h2>
+      </Text>
+      <Main>
+        <Notes onClick={() => navigate('/notes')}>
+          <FcKindle size={60} />
+          <h2>NOTES</h2>
+          <h2 className="description">
+            See all your
+            notes and create them.
           </h2>
-          <h2>Choose one of the options.</h2>
-        </Text>
-        <Main>
-          <Notes onClick={() => navigate('/notes')}>
-            <FcKindle size={60} />
-            <h2>NOTES</h2>
-            <h2 className="description">
-              See all your
-              notes and create them.
-            </h2>
-          </Notes>
-          <Today onClick={() => navigate('/notes/today')}>
-            <FcCalendar size={60} />
-            <h2>TODAY</h2>
-            <h2 className="description">
-              See all your notes that need
-              to be reviewed today.
-            </h2>
-          </Today>
-        </Main>
-      </Container>
-    </>
+        </Notes>
+        <Today onClick={() => navigate('/notes/today')}>
+          <FcCalendar size={60} />
+          <h2>TODAY</h2>
+          <h2 className="description">
+            See all your notes that need
+            to be reviewed today.
+          </h2>
+        </Today>
+      </Main>
+    </Container>
   );
 }
 const Container = styled.div`

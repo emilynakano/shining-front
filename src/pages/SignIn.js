@@ -4,11 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../components/form/Input';
 import Button from '../components/form/Button';
 import Form from '../components/form';
-import { signIn } from '../hooks/useAuth';
+import { useAuth } from '../hooks/useAuth';
 import Header from '../components/Header';
 import Title from '../components/form/Title';
 
 export default function SignIn() {
+  const { signIn } = useAuth();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [user, setUser] = useState({

@@ -3,7 +3,6 @@ import { AiFillPlusCircle } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
-import HeaderUser from '../components/HeaderUser';
 import api from '../services/api';
 import Note from '../components/Note';
 import CreateNote from '../components/CreateNote';
@@ -15,13 +14,7 @@ export default function Notes() {
   const [notes, setNotes] = useState(false);
   const [atualization, setAtualization] = useState(false);
   useEffect(() => {
-    const token = localStorage.getItem('@shining:token');
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const promise = api.get('notes', config);
+    const promise = api.get('notes');
     promise.then((res) => setNotes(res.data));
     promise.catch((err) => {
       if (err.response.status === 401) {
@@ -31,45 +24,39 @@ export default function Notes() {
   }, [atualization]);
   if (!notes) {
     return (
-      <>
-        <HeaderUser />
-        <Loading />
-      </>
+      <Loading />
     );
   }
   return (
-    <>
-      <HeaderUser />
-      <Container>
-        <Title>
-          <h2>NOTES</h2>
-          <AiFillPlusCircle
-            data-cy="button-add-note"
-            color="#C50B0B"
-            font-size={30}
-            onClick={() => setClick(!click)}
-          />
-        </Title>
-        <CreateNote
-          click={click}
-          setClick={setClick}
-          atualization={atualization}
-          setAtualization={setAtualization}
+    <Container>
+      <Title>
+        <h2>NOTES</h2>
+        <AiFillPlusCircle
+          data-cy="button-add-note"
+          color="#C50B0B"
+          font-size={30}
+          onClick={() => setClick(!click)}
         />
-        <Row />
-        {notes.length === 0
-          ? (
-            <Fade left cascade>
-              <h2 className="zeroNotes">There are no notes yet, create one.</h2>
-            </Fade>
-          )
-          : notes.map((note) => (
+      </Title>
+      <CreateNote
+        click={click}
+        setClick={setClick}
+        atualization={atualization}
+        setAtualization={setAtualization}
+      />
+      <Row />
+      {notes.length === 0
+        ? (
+          <Fade left cascade>
+            <h2 className="zeroNotes">There are no notes yet, create one.</h2>
+          </Fade>
+        )
+        : notes.map((note) => (
 
-            <Note note={note} />
+          <Note note={note} />
 
-          ))}
-      </Container>
-    </>
+        ))}
+    </Container>
   );
 }
 

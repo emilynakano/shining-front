@@ -8,9 +8,10 @@ import Button from '../components/form/Button';
 import Title from '../components/form/Title';
 import Form from '../components/form';
 
-import { signUpAndLogin } from '../hooks/useAuth';
+import { useAuth } from '../hooks/useAuth';
 
 export default function SignUp() {
+  const { signUpAndLogin } = useAuth();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [user, setUser] = useState({
