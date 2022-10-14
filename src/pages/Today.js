@@ -7,18 +7,11 @@ import api from '../services/api';
 import Loading from '../components/Loading';
 
 export default function Today() {
-  const navigate = useNavigate();
-
   const [notes, setNotes] = useState(false);
   const [atualization, setAtualization] = useState(false);
   useEffect(() => {
     const promise = api.get('notes/today');
     promise.then((res) => setNotes(res.data));
-    promise.catch((err) => {
-      if (err.response.status === 401) {
-        navigate('/sign-in');
-      }
-    });
   }, [atualization]);
   if (!notes) {
     return (

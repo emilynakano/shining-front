@@ -9,18 +9,12 @@ import CreateNote from '../components/CreateNote';
 import Loading from '../components/Loading';
 
 export default function Notes() {
-  const navigate = useNavigate();
   const [click, setClick] = useState(false);
   const [notes, setNotes] = useState(false);
   const [atualization, setAtualization] = useState(false);
   useEffect(() => {
     const promise = api.get('notes');
     promise.then((res) => setNotes(res.data));
-    promise.catch((err) => {
-      if (err.response.status === 401) {
-        navigate('/sign-in');
-      }
-    });
   }, [atualization]);
   if (!notes) {
     return (
