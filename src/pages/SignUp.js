@@ -8,7 +8,10 @@ import Button from '../components/form/Button';
 import Title from '../components/form/Title';
 import Form from '../components/form';
 
+import { useAuth } from '../hooks/useAuth';
+
 export default function SignUp() {
+  const { signUpAndLogin } = useAuth();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -26,6 +29,7 @@ export default function SignUp() {
     e.preventDefault();
     setLoading(true);
     try {
+      await signUpAndLogin(user);
       toast.success('Account created successfully!');
       setTimeout(() => {
         navigate('/home');
