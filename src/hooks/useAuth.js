@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import api from '../services/api';
 
 const AuthContext = createContext({});
@@ -22,6 +22,18 @@ function AuthProvider({ children }) {
     </AuthContext.Provider>
   );
 }
+
+function useAuth() {
+  const context = useContext(AuthContext);
+
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+
+  return context;
+}
+
+export { AuthProvider, useAuth };
 
 export async function signIn(user) {
   const promise = await api.post('sign-in', user);
