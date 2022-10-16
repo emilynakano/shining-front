@@ -3,12 +3,13 @@ import { AiFillPlusCircle } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
-import api from '../services/api';
 import Note from '../components/Note';
 import CreateNote from '../components/CreateNote';
 import Loading from '../components/Loading';
+import useApiPrivate from '../hooks/useApiPrivate';
 
 export default function Notes() {
+  const api = useApiPrivate();
   const [click, setClick] = useState(false);
   const [notes, setNotes] = useState(false);
   const [atualization, setAtualization] = useState(false);

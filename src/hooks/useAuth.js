@@ -43,10 +43,20 @@ function AuthProvider({ children }) {
     await signIn(userLogin);
   }, []);
 
+  const logout = useCallback(() => {
+    localStorage.removeItem('@shining:token');
+    localStorage.removeItem('@shining:username');
+
+    setData({});
+  }, []);
+
   const auth = !!Object.keys(data).length;
 
   return (
-    <AuthContext.Provider value={{ signIn, signUpAndLogin, auth }}>
+    <AuthContext.Provider value={{
+      signIn, signUpAndLogin, auth, logout,
+    }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
 import NoteToday from '../components/NoteToday';
-import api from '../services/api';
 import Loading from '../components/Loading';
+import useApiPrivate from '../hooks/useApiPrivate';
 
 export default function Today() {
+  const api = useApiPrivate();
   const [notes, setNotes] = useState(false);
   const [atualization, setAtualization] = useState(false);
   useEffect(() => {
