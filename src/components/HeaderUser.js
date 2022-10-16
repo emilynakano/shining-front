@@ -1,37 +1,73 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { FiLogOut } from 'react-icons/fi';
+import { useState } from 'react';
 import logo from '../assets/images/logo.png';
+import { useAuth } from '../hooks/useAuth';
 
 export default function HeaderUser() {
+  const { logout } = useAuth();
+  const [click, setClick] = useState(false);
   const navigate = useNavigate();
   return (
-    <Container>
-      <img onClick={() => navigate('/home')} src={logo} alt="shinning" />
-      <Main>
-        <h1
-          className="notes"
-          onClick={() => navigate('/notes')}
-        >
-          notes
-        </h1>
-        <h1
-          className="today"
-          onClick={() => navigate('/notes/today')}
-        >
-          today
+    <>
+      <Container>
+        <img onClick={() => navigate('/home')} src={logo} alt="shinning" />
+        <Main>
+          <h1
+            className="notes"
+            onClick={() => navigate('/notes')}
+          >
+            notes
+          </h1>
+          <h1
+            className="today"
+            onClick={() => navigate('/notes/today')}
+          >
+            today
 
-        </h1>
-        <Icon>
-          <FiLogOut />
-        </Icon>
-      </Main>
-    </Container>
+          </h1>
+          <Icon>
+            <FiLogOut onClick={() => setClick(!click)} />
+          </Icon>
+        </Main>
+      </Container>
+      {click
+        ? (
+          <Logout onClick={() => logout()}>
+            <div>
+              <h1>Logout</h1>
+            </div>
+          </Logout>
+        ) : ''}
+
+    </>
 
   );
 }
 
+const Logout = styled.div`
+  cursor:pointer;
+  width: 100%;
+  display:flex;
+  justify-content:end;
+  position:absolute;
+  h1 {
+    font-size: 14px;
+  }
+  div {
+    border-radius: 0 0 7px 7px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width: 70px;
+    height: 40px;
+    background:red;
+  }
+`;
+
 const Icon = styled.div`
+  cursor:pointer;
   margin-left: 10px;
 `;
 
