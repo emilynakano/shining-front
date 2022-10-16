@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { FiLogOut } from 'react-icons/fi';
 import logo from '../assets/images/logo.png';
 
 export default function HeaderUser() {
@@ -21,11 +22,19 @@ export default function HeaderUser() {
           today
 
         </h1>
+        <Icon>
+          <FiLogOut />
+        </Icon>
       </Main>
     </Container>
 
   );
 }
+
+const Icon = styled.div`
+  margin-left: 10px;
+`;
+
 const Main = styled.div`
     display: flex;
     gap: 10px;
