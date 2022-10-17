@@ -9,6 +9,7 @@ export default function HeaderUser() {
   const { logout } = useAuth();
   const [click, setClick] = useState(false);
   const navigate = useNavigate();
+  console.log(click);
   return (
     <>
       <Container>
@@ -32,14 +33,11 @@ export default function HeaderUser() {
           </Icon>
         </Main>
       </Container>
-      {click
-        ? (
-          <Logout onClick={() => logout()}>
-            <div>
-              <h1>Logout</h1>
-            </div>
-          </Logout>
-        ) : ''}
+      <Logout click={click} onClick={() => logout()}>
+        <div>
+          <h1>Logout</h1>
+        </div>
+      </Logout>
 
     </>
 
@@ -64,6 +62,8 @@ const Logout = styled.div`
     height: 40px;
     background:red;
   }
+  transform: ${(props) => (props.click ? 'translateX(0)' : 'translateX(100%)')};
+  transition: transform 0.2s ease-in;
 `;
 
 const Icon = styled.div`
