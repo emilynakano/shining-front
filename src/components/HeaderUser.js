@@ -49,7 +49,7 @@ const Logout = styled.div`
   width: 100%;
   display:flex;
   justify-content:end;
-  position:absolute;
+  position:fixed;
   h1 {
     font-size: 14px;
   }
