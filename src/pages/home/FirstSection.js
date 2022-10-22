@@ -36,6 +36,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items:center;
+  justify-content: space-around;
   height: calc(100vh - 60px);
   
   img {
