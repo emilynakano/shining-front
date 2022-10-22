@@ -1,10 +1,13 @@
 import styled from 'styled-components';
+import { Title, Description } from './FirstSection';
 
 export default function SecondSection() {
   return (
 
     <Container>
-      oi
+      <Title>
+        <h1>It's not a </h1>
+      </Title>
     </Container>
 
   );

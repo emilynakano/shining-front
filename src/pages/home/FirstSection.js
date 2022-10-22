@@ -17,9 +17,8 @@ export default function FirstSection() {
             </Title>
             <Description>
               <h1 className="description">
-                Exercise your memory with a program
-                entirely based on the studies of the
-                psychologist Hermann Ebbinghaus.
+                The complete program based on the ideas
+                of the psychologist Ebbinghaus.
               </h1>
             </Description>
             <SignUp onClick={() => navigate('/sign-up')}>
@@ -84,8 +83,9 @@ const SignUp = styled.div`
 `;
 const Description = styled.div`
   width: 80%;
-  max-width: 500px;
+  max-width: 400px;
   h1 {
+    font-family: Roboto;
     font-weight: 700;
     font-size: 20px;
     line-height: 26px;
@@ -103,12 +103,12 @@ const Title = styled.div`
   width: 80%;
   max-width: 700px;
   h1 {
+    font-family: Roboto;
     font-weight: 800;
     font-size: 45px;
     line-height: 50px;
     letter-spacing: 0.05em;
     color: #DA2222;
-    mix-blend-mode: lighten;
   }
   @media (max-width: 465px) {
     h1 {
@@ -118,3 +118,5 @@ const Title = styled.div`
     }
   }
 `;
+
+export { Title, Description };
