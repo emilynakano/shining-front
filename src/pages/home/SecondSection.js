@@ -66,5 +66,16 @@ const LogoHermann = styled.div`
     width: 300px;
     height: 340px;
     margin-right: 25px;
+
+    @keyframes go-back {
+      from {
+        transform: translatex(-5px);
+      }
+      to {
+        transform: translatex(0px) rotate(2deg);    
+      }
+    }
+    animation: go-back 0.5s infinite alternate;
   }
+  
 `;
