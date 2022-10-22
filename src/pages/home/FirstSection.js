@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import Zoom from 'react-reveal/Zoom';
-import SmallHeader from '../components/SmallHeader';
-import Balloon from '../assets/images/balloon.jpg';
+import SmallHeader from '../../components/SmallHeader';
+import Balloon from '../../assets/images/balloon.jpg';
 
-export default function Home() {
+export default function FirstSection() {
   const navigate = useNavigate();
   return (
     <>
@@ -36,6 +36,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items:center;
+  height: calc(100vh - 60px);
   
   img {
     margin-top: 40px;
