@@ -13,7 +13,7 @@ export default function FirstSection() {
         <Container>
           <Main>
             <Title>
-              <h1 className="title">It's not a horror movie, but you'll never forget!</h1>
+              <h1>It's not a horror movie, but you'll never forget!</h1>
             </Title>
             <Description>
               <h1 className="description">
@@ -59,16 +59,6 @@ const Main = styled.div`
     text-align: center;
   }
 
-  @media (max-width: 465px) {
-    .title {
-      line-height: 34px;
-      font-size: 30px;
-      letter-spacing: 0;
-    }
-    .description {
-      font-size: 15px;
-    }
-  }
 `;
 
 const SignUp = styled.div`
@@ -102,6 +92,11 @@ const Description = styled.div`
     letter-spacing: 0.01em;
     color: #FFFFFF;
   }
+  @media (max-width: 465px) {
+    h1 {
+      font-size: 15px;
+    }
+  }
 `;
 
 const Title = styled.div`
@@ -115,5 +110,11 @@ const Title = styled.div`
     color: #DA2222;
     mix-blend-mode: lighten;
   }
-  
+  @media (max-width: 465px) {
+    h1 {
+      line-height: 34px;
+      font-size: 30px;
+      letter-spacing: 0;
+    }
+  }
 `;
