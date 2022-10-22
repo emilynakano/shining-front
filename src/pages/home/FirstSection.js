@@ -43,11 +43,7 @@ const Container = styled.div`
     margin-top: 40px;
     width: 60px;
   }
-  @media (max-width: 400px) {
-    img {
-      width: 45px;
-    }
-  }
+
 `;
 
 const Main = styled.div`
@@ -64,7 +60,6 @@ const Main = styled.div`
   }
 
   @media (max-width: 465px) {
-    margin-top: 20px;
     .title {
       line-height: 34px;
       font-size: 30px;
