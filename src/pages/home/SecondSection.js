@@ -25,14 +25,15 @@ export default function SecondSection() {
       </Main>
       <LogoHermann>
         <img src={Hermann} alt="herman" />
-
       </LogoHermann>
+
     </Container>
+
   );
 }
+
 const Container = styled.div`
   background: #FFFFFF;
-  height: 100vh;
 
   display: flex;
   flex-direction: row;
@@ -62,6 +63,7 @@ const Description = styled(StyleDescription)`
 
 `;
 const LogoHermann = styled.div`
+  cursor: pointer;
   img {
     width: 300px;
     height: 340px;
