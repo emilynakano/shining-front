@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Fade from 'react-reveal/Fade';
 import { Title as StyleTitle, Description as StyleDescription } from './FirstSection';
 import Hermann from '../../assets/images/Hermann.jpg';
 
@@ -8,24 +9,30 @@ export default function SecondSection() {
       <Main>
         <Title>
           <h1>
-            How will we do for
-            you never forget?
+            <Fade top cascade>
+              How will we do for
+              you never forget?
+            </Fade>
           </h1>
         </Title>
         <Description>
           <h1>
-            That question who will answer
-            will be nothing more, nothing
-            less than the great scholar in
-            the area of human memory, he left
-            you a letter! Check out what Ebbinghaus
-            has to say!
+            <Fade top cascade>
+              That question who will answer
+              will be nothing more, nothing
+              less than the great scholar in
+              the area of human memory, he left
+              you a letter! Check out what Ebbinghaus
+              has to say!
+            </Fade>
           </h1>
         </Description>
       </Main>
-      <LogoHermann>
-        <img src={Hermann} alt="herman" />
-      </LogoHermann>
+      <Fade right>
+        <LogoHermann>
+          <img src={Hermann} alt="herman" />
+        </LogoHermann>
+      </Fade>
 
     </Container>
 

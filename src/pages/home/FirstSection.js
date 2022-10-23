@@ -11,7 +11,6 @@ export default function FirstSection() {
       <SmallHeader />
       <Fade bottom>
         <Container>
-
           <Main>
             <Title>
               <h1>It's not a horror movie, but you'll never forget!</h1>
@@ -25,10 +24,8 @@ export default function FirstSection() {
             <SignUp onClick={() => navigate('/sign-up')}>
               <h1>Get Started</h1>
             </SignUp>
-
           </Main>
           <img src={Balloon} alt="balloon" />
-
         </Container>
       </Fade>
     </>
@@ -40,11 +37,9 @@ const Container = styled.div`
   align-items:center;
   justify-content: space-around;
   height: calc(100vh - 60px);
-  
   img {
     width: 60px;
   }
-
 `;
 
 const Main = styled.div`
