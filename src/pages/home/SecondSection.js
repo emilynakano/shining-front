@@ -39,6 +39,12 @@ const Container = styled.div`
   flex-direction: row;
   justify-content:center;
   padding-top: 80px;
+
+  @media (max-width: 760px) {
+    flex-direction: column;
+    align-items:center;
+    gap: 25px;
+  }
 `;
 const Main = styled.div`
   max-width: 520px;
@@ -49,6 +55,10 @@ const Main = styled.div`
   text-align:center;
   justify-content: space-around;
   max-height: 310px;
+
+  @media (max-width: 760px) { 
+    gap: 20px;
+  }
 `;
 const Title = styled(StyleTitle)`
   h1 {
@@ -78,6 +88,15 @@ const LogoHermann = styled.div`
       }
     }
     animation: go-back 0.5s infinite alternate;
+  }
+
+  @media (max-width: 760px) { 
+    
+    img {
+      width: 260px;
+      height: 300px;
+      margin-right: 0px;
+    }
   }
   
 `;
