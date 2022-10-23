@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import Zoom from 'react-reveal/Zoom';
+import Fade from 'react-reveal/Fade';
 import SmallHeader from '../../components/SmallHeader';
 import Balloon from '../../assets/images/balloon.jpg';
 
@@ -9,8 +9,9 @@ export default function FirstSection() {
   return (
     <>
       <SmallHeader />
-      <Zoom left>
+      <Fade bottom>
         <Container>
+
           <Main>
             <Title>
               <h1>It's not a horror movie, but you'll never forget!</h1>
@@ -24,10 +25,12 @@ export default function FirstSection() {
             <SignUp onClick={() => navigate('/sign-up')}>
               <h1>Get Started</h1>
             </SignUp>
+
           </Main>
           <img src={Balloon} alt="balloon" />
+
         </Container>
-      </Zoom>
+      </Fade>
     </>
   );
 }
@@ -39,14 +42,12 @@ const Container = styled.div`
   height: calc(100vh - 60px);
   
   img {
-    margin-top: 40px;
     width: 60px;
   }
 
 `;
 
 const Main = styled.div`
-  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items:center;

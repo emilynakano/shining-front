@@ -91,7 +91,6 @@ const LogoHermann = styled.div`
   }
 
   @media (max-width: 760px) { 
-    
     img {
       width: 260px;
       height: 300px;
