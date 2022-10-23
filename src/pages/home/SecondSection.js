@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
+import { useState } from 'react';
 import { Title as StyleTitle, Description as StyleDescription } from './FirstSection';
 import Hermann from '../../assets/images/Hermann.jpg';
+import LetterEbbinghaus from '../../components/modals/LetterEbbinghaus';
 
 export default function SecondSection() {
+  const [showMessage, setShowMessage] = useState(false);
   return (
     <Container>
       <Main>
@@ -11,10 +14,8 @@ export default function SecondSection() {
           <Fade left cascade>
             <div>
               <h1>
-
                 How will we do for
                 you never forget?
-
               </h1>
             </div>
           </Fade>
@@ -35,9 +36,10 @@ export default function SecondSection() {
         </Description>
       </Main>
       <Fade right>
-        <LogoHermann>
+        <LogoHermann onClick={() => setShowMessage(true)}>
           <img src={Hermann} alt="herman" />
         </LogoHermann>
+        <LetterEbbinghaus show={showMessage} setShow={setShowMessage} />
       </Fade>
     </Container>
   );
