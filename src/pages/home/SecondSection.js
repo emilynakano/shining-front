@@ -8,24 +8,30 @@ export default function SecondSection() {
     <Container>
       <Main>
         <Title>
-          <h1>
-            <Fade top cascade>
-              How will we do for
-              you never forget?
-            </Fade>
-          </h1>
+          <Fade left cascade>
+            <div>
+              <h1>
+
+                How will we do for
+                you never forget?
+
+              </h1>
+            </div>
+          </Fade>
         </Title>
         <Description>
-          <h1>
-            <Fade top cascade>
-              That question who will answer
-              will be nothing more, nothing
-              less than the great scholar in
-              the area of human memory, he left
-              you a letter! Check out what Ebbinghaus
-              has to say!
-            </Fade>
-          </h1>
+          <Fade bottom cascade>
+            <div>
+              <h1>
+                That question who will answer
+                will be nothing more, nothing
+                less than the great scholar in
+                the area of human memory, he left
+                you a letter! Check out what Ebbinghaus
+                has to say!
+              </h1>
+            </div>
+          </Fade>
         </Description>
       </Main>
       <Fade right>
@@ -33,9 +39,7 @@ export default function SecondSection() {
           <img src={Hermann} alt="herman" />
         </LogoHermann>
       </Fade>
-
     </Container>
-
   );
 }
 
