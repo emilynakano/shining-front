@@ -29,7 +29,24 @@ export default function LetterEbbinghaus({ show, setShow }) {
               <br />
               Are you ready for this adventure?
             </h2>
+
+            <Typist.Delay ms={1000} />
+
+            <br />
+            <div className="buttons">
+              <SuccessButton>
+                Yes, let's destroy
+                this monster!
+              </SuccessButton>
+
+              <Typist.Delay ms={1000} />
+
+              <UnsuccessButton>
+                No, go rest in peace, Ebbi
+              </UnsuccessButton>
+            </div>
           </Typist>
+
         </Container>
       </Modal.Body>
     </Modal>
@@ -47,4 +64,24 @@ const Container = styled.div`
     font-family: 'Silkscreen', cursive;
     line-height: 20px;
   }
+  .buttons {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    gap: 20px;
+  }
+ 
+`;
+const SuccessButton = styled.div`
+  width: 170px;
+  padding: 13px;
+  border: none;
+  border-radius: 20px;
+  text-align: center;
+  background-color: #138808;
+  color: black;
+  cursor: pointer;
+`;
+const UnsuccessButton = styled(SuccessButton)`
+  background-color: #da2222;
 `;
