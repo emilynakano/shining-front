@@ -13,6 +13,7 @@ export default function SecondSection() {
         <Title>
           <Fade left cascade>
             <div>
+
               <h1>
                 How will we do for
                 you never forget?
