@@ -15,11 +15,19 @@ export default function LetterEbbinghaus({ show, setShow }) {
             <br />
             <br />
             <h2>
-              I came from the depths of my long rest just to reveal to
-              you the secret of how to have an excellent memory to provide
-              you with a quality study and consequently a happier life.
+              I came from the depths
+              of my long rest just to reveal to
+              you the secret of how to have an excellent memory!
+              <Typist.Delay ms={1000} />
+              {' '}
+              This will provide you with a quality study
+              and consequently a happier life.
+              <Typist.Delay ms={1000} />
+              <br />
               For that, we need to defeat an old and fearless villain...
-              are you ready for this adventure?
+              <Typist.Delay ms={1000} />
+              <br />
+              Are you ready for this adventure?
             </h2>
           </Typist>
         </Container>
@@ -30,12 +38,13 @@ export default function LetterEbbinghaus({ show, setShow }) {
 }
 
 const Container = styled.div`
+  min-height: 300px;
   h1 {
     font-family: 'Nabla', cursive;
     font-size: 35px;
   }
   h2 {
     font-family: 'Silkscreen', cursive;
-
+    line-height: 20px;
   }
 `;
