@@ -2,7 +2,7 @@ import Modal from 'react-bootstrap/Modal';
 import Typist from 'react-typist-component';
 import styled from 'styled-components';
 
-export default function LetterEbbinghaus({ show, setShow }) {
+export default function SecondLetter({ show, setShow }) {
   return (
     <Modal centered show={show} onHide={() => setShow(!show)}>
       <Modal.Header closeButton />
@@ -10,43 +10,33 @@ export default function LetterEbbinghaus({ show, setShow }) {
         <Container>
           <Typist typingDelay={70}>
             <h1>
-              Dear unforgettable person
+              Dear Courageous Person.
             </h1>
+            <Typist.Delay ms={1000} />
             <br />
             <br />
             <h2>
-              I came from the depths
-              of my long rest just to reveal to
-              you the secret of how to have an excellent memory!
+              I am very happy that you accepted this challenge!
+              <Typist.Delay ms={1000} />
+              <br />
+              Now, without further ado, the monster you must fight is the forgetting curve!
               <Typist.Delay ms={1000} />
               {' '}
-              This will provide you with a quality study
-              and consequently a happier life.
+              Look what a scary situation, it makes you forget 80% of what you learned in just
+              one month!
               <Typist.Delay ms={1000} />
               <br />
-              For that, we need to defeat an old and fearless villain...
+              Your mission is not to let her ruin your life anymore.
               <Typist.Delay ms={1000} />
+              {' '}
+              To do this is simple, you just need to do 4 revisions, and this platform
+              called Shining will help you in this whole fight!
+              <Typist.Delay ms={2000} />
               <br />
-              Are you ready for this adventure?
+              <br />
+              P.S: How I wish there was an app like this in my time, rip :(
             </h2>
-
-            <Typist.Delay ms={1000} />
-
-            <br />
-            <div className="buttons">
-              <SuccessButton>
-                Yes, let's destroy
-                this monster!
-              </SuccessButton>
-
-              <Typist.Delay ms={1000} />
-
-              <UnsuccessButton>
-                No, go rest in peace, Ebbi
-              </UnsuccessButton>
-            </div>
           </Typist>
-
         </Container>
       </Modal.Body>
     </Modal>

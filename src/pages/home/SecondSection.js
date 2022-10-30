@@ -3,17 +3,19 @@ import Fade from 'react-reveal/Fade';
 import { useState } from 'react';
 import { Title as StyleTitle, Description as StyleDescription } from './FirstSection';
 import Hermann from '../../assets/images/Hermann.jpg';
-import LetterEbbinghaus from '../../components/modals/LetterEbbinghaus';
+import FirstLetter from '../../components/modals/FirstLetter';
+import SecondLetter from '../../components/modals/SecondLetter';
 
 export default function SecondSection() {
   const [showMessage, setShowMessage] = useState(false);
+  const [showMessage2, setShowMessage2] = useState(false);
+
   return (
     <Container>
       <Main>
         <Title>
           <Fade left cascade>
             <div>
-
               <h1>
                 How will we do for
                 you never forget?
@@ -40,7 +42,8 @@ export default function SecondSection() {
         <LogoHermann onClick={() => setShowMessage(true)}>
           <img src={Hermann} alt="herman" />
         </LogoHermann>
-        <LetterEbbinghaus show={showMessage} setShow={setShowMessage} />
+        <FirstLetter show={showMessage} setShow={setShowMessage} setShow2={setShowMessage2} />
+        <SecondLetter show={showMessage2} setShow={setShowMessage2} />
       </Fade>
     </Container>
   );
