@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import FirstSection from './FirstSection';
 import SecondSection from './SecondSection';
 import Wave from '../../components/Wave';
+import ForgettingCurveSection from './ForgettingCurveSection';
 
 export default function Home() {
   return (
@@ -9,6 +10,7 @@ export default function Home() {
       <FirstSection />
       <SecondSection />
       <Wave />
+      <ForgettingCurveSection />
     </Container>
   );
 }
