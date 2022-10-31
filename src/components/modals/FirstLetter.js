@@ -35,9 +35,7 @@ export default function FirstLetter({ show, setShow, setShow2 }) {
             <div className="buttons">
               <SuccessButton onClick={() => {
                 setShow(false);
-                setTimeout(() => {
-                  setShow2(true);
-                }, [1000]);
+                setShow2(true);
               }}
               >
                 Yes, let's destroy
