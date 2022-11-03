@@ -105,6 +105,7 @@ const Title = styled(StyleTitle)`
 
 const Container = styled.div`
   margin-top: 100px;
+  margin-bottom:40px;
   display: flex;
   flex-direction: column;
   align-items:center;

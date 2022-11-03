@@ -3,6 +3,7 @@ import FirstSection from './FirstSection';
 import SecondSection from './SecondSection';
 import Wave from '../../components/Wave';
 import ForgettingCurveSection from './ForgettingCurveSection';
+import MotivationSection from './MotivationSection';
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <SecondSection />
       <Wave />
       <ForgettingCurveSection />
+      <MotivationSection />
     </Container>
   );
 }
