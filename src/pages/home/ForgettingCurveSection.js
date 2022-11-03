@@ -1,29 +1,34 @@
 import styled from 'styled-components';
 import { useState } from 'react';
+import { Fade } from 'react-reveal';
 import { Title as StyleTitle } from './FirstSection';
 import Curve from '../../assets/images/curve.png';
 
 export default function ForgettingCurveSection() {
   const [click, setClick] = useState(false);
   return (
-    <Container>
-      <Title>
-        <h1>The Forgetting Curve</h1>
-      </Title>
-      <Main click={click}>
-        <div className="back-face" onClick={() => setClick(!click)}>
-          <img src={Curve} alt="curve" />
-        </div>
-        <div className="front-face" onClick={() => setClick(!click)}>
-          <h2>
-            The forgetting curve is the graphical representation of the
-            relationship between retention of acquired information and time
-            in which they remain in our memory. In this way, as
-            revisions are made the knowledge is more likely not to be lost.
-          </h2>
-        </div>
-      </Main>
-    </Container>
+    <Fade bottom>
+      <Container>
+        <Title>
+          <h1>The Forgetting Curve</h1>
+        </Title>
+        <Fade bottom>
+          <Main click={click}>
+            <div className="back-face" onClick={() => setClick(!click)}>
+              <img src={Curve} alt="curve" />
+            </div>
+            <div className="front-face" onClick={() => setClick(!click)}>
+              <h2>
+                The forgetting curve is the graphical representation of the
+                relationship between retention of acquired information and time
+                in which they remain in our memory. In this way, as
+                revisions are made the knowledge is more likely not to be lost.
+              </h2>
+            </div>
+          </Main>
+        </Fade>
+      </Container>
+    </Fade>
   );
 }
 const Main = styled.div`
@@ -36,11 +41,9 @@ const Main = styled.div`
     max-width: 600px;
     width: 90%;
     max-height: 320px;
-
     img {
       width:100%;
     }
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -73,7 +76,6 @@ const Main = styled.div`
     transform-style: preserve-3d;
 
     transform: ${(props) => (props.click ? '' : 'rotateY(-180deg)')};
-
     h2 {
       font-family: Roboto;
       font-weight: 500;
@@ -83,6 +85,7 @@ const Main = styled.div`
       color: white;
       text-align: start;
     }
+
     @media (max-width: 600px) {
       padding:0px;
     }

@@ -57,6 +57,7 @@ const Container = styled.div`
   justify-content:center;
   padding-top: 80px;
 
+  overflow-y: hidden;
   @media (max-width: 760px) {
     flex-direction: column;
     align-items:center;
