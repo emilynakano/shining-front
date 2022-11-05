@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 import { FaFireAlt, FaClock, FaLightbulb } from 'react-icons/fa';
+import Fade from 'react-reveal';
 import { Title as StyleTitle } from './FirstSection';
 
 export default function MotivationSection() {
   return (
     <Container>
       <Main>
-        <Title>
-          <h1>Why choose Shining platform?</h1>
-        </Title>
+        <Fade left>
+          <Title>
+            <h1>Why choose Shining platform?</h1>
+          </Title>
+        </Fade>
         <Row />
         <Content>
           <FaFireAlt size={28} />

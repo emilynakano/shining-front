@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import Fade from 'react-reveal';
 import Button from '../../components/form/Button';
 import { Title as TitleStyle } from './FirstSection';
 
@@ -8,7 +9,9 @@ export default function PlansSection() {
   return (
     <Container>
       <Title>
-        <h1>Choose your plan</h1>
+        <Fade left>
+          <h1>Choose your plan</h1>
+        </Fade>
       </Title>
       <Plans>
         <Plan>
