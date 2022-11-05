@@ -39,7 +39,7 @@ export default function MotivationSection() {
   );
 }
 const Container = styled.div`
-  padding-top: 50px;
+  padding: 50px 0;
   background-color:white;
   display:flex;
   flex-direction:column;
