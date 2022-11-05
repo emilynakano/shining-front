@@ -9,7 +9,6 @@ export default function HeaderUser() {
   const { logout } = useAuth();
   const [click, setClick] = useState(false);
   const navigate = useNavigate();
-  console.log(click);
   return (
     <>
       <Container>

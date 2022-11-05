@@ -1,25 +1,24 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import Zoom from 'react-reveal/Zoom';
-import SmallHeader from '../components/SmallHeader';
-import Balloon from '../assets/images/balloon.jpg';
+import Fade from 'react-reveal/Fade';
+import SmallHeader from '../../components/SmallHeader';
+import Balloon from '../../assets/images/balloon.jpg';
 
-export default function Home() {
+export default function FirstSection() {
   const navigate = useNavigate();
   return (
     <>
       <SmallHeader />
-      <Zoom left>
+      <Fade bottom>
         <Container>
           <Main>
             <Title>
-              <h1 className="title">It's not a horror movie, but you'll never forget!</h1>
+              <h1>It's not a horror movie, but you'll never forget!</h1>
             </Title>
             <Description>
               <h1 className="description">
-                Exercise your memory with a program
-                entirely based on the studies of the
-                psychologist Hermann Ebbinghaus.
+                The complete program based on the ideas
+                of the psychologist Ebbinghaus.
               </h1>
             </Description>
             <SignUp onClick={() => navigate('/sign-up')}>
@@ -28,7 +27,7 @@ export default function Home() {
           </Main>
           <img src={Balloon} alt="balloon" />
         </Container>
-      </Zoom>
+      </Fade>
     </>
   );
 }
@@ -36,20 +35,14 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items:center;
-  
+  justify-content: space-around;
+  height: calc(100vh - 60px);
   img {
-    margin-top: 40px;
     width: 60px;
-  }
-  @media (max-width: 400px) {
-    img {
-      width: 45px;
-    }
   }
 `;
 
 const Main = styled.div`
-  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items:center;
@@ -61,17 +54,6 @@ const Main = styled.div`
     text-align: center;
   }
 
-  @media (max-width: 465px) {
-    margin-top: 20px;
-    .title {
-      line-height: 34px;
-      font-size: 30px;
-      letter-spacing: 0;
-    }
-    .description {
-      font-size: 15px;
-    }
-  }
 `;
 
 const SignUp = styled.div`
@@ -97,13 +79,19 @@ const SignUp = styled.div`
 `;
 const Description = styled.div`
   width: 80%;
-  max-width: 500px;
+  max-width: 400px;
   h1 {
+    font-family: Roboto;
     font-weight: 700;
     font-size: 20px;
     line-height: 26px;
     letter-spacing: 0.01em;
     color: #FFFFFF;
+  }
+  @media (max-width: 465px) {
+    h1 {
+      font-size: 15px;
+    }
   }
 `;
 
@@ -111,12 +99,20 @@ const Title = styled.div`
   width: 80%;
   max-width: 700px;
   h1 {
+    font-family: Roboto;
     font-weight: 800;
     font-size: 45px;
     line-height: 50px;
     letter-spacing: 0.05em;
     color: #DA2222;
-    mix-blend-mode: lighten;
   }
-  
+  @media (max-width: 465px) {
+    h1 {
+      line-height: 34px;
+      font-size: 30px;
+      letter-spacing: 0;
+    }
+  }
 `;
+
+export { Title, Description };

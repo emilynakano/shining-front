@@ -1,7 +1,8 @@
 import { BrowserRouter } from 'react-router-dom';
-
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import Routes from './routes';
 import { AuthProvider } from './hooks/useAuth';
 
