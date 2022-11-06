@@ -2,14 +2,38 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import MDEditor from '@uiw/react-md-editor';
 import Fade from 'react-reveal/Fade';
+import { FiTrash2 } from 'react-icons/fi';
+import Delete from '../services/noteService';
 
 export default function Note({ note }) {
   const [click, setClick] = useState(false);
+  const [deletedPost, setDeletedPost] = useState(-1);
+
+  async function DeleteNote() {
+    try {
+      await Delete(note.id);
+      setDeletedPost(note.id);
+    } catch {
+      alert('erro');
+    }
+  }
+  if (note.id === deletedPost) {
+    return (
+      <></>
+    );
+  }
   return (
     <>
       <Fade>
         <Container className="hover" onClick={() => (click ? setClick(false) : setClick(true))}>
-          <Title><h1>{note.title}</h1></Title>
+          <Header>
+            <Title>
+              <h1>{note.title}</h1>
+            </Title>
+            <Icon>
+              <FiTrash2 size={20} onClick={() => DeleteNote()} />
+            </Icon>
+          </Header>
           <DataNote>
             <Date>
               <h2>
@@ -45,6 +69,15 @@ const Title = styled.div`
   white-space:nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+`;
+
+const Header = styled.div`
+  display:flex;
+  justify-content: space-between;
+  gap: 10px;
+`;
+
+const Icon = styled.div`
 `;
 
 const Row = styled.div`
