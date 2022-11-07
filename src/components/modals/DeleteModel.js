@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import Modal from 'react-modal';
+import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import Delete from '../../services/noteService';
 
@@ -32,22 +32,22 @@ const modalStyle = {
 
 export default function DeleteModel({
   modalIsOpen, setModalIsOpen,
-  postToDelete, notes, setNotes,
+  noteToDelete, atualization,
+  setAtualization,
 }) {
   async function HandleDelete() {
     try {
-      await Delete(postToDelete);
-      const filteredNotes = notes.filter((not) => not.id !== postToDelete);
-      setNotes(filteredNotes);
+      await Delete(noteToDelete);
+      setAtualization(!atualization);
       setModalIsOpen(false);
     } catch {
-      alert(postToDelete);
+      toast.error('An error occurred while deleting this note');
     }
   }
   return (
     <Modal isOpen={modalIsOpen} style={modalStyle} closeTimeoutMS={500}>
       <ModalText>
-        Are you sure you want to delete this post?
+        Are you sure you want to delete this note?
       </ModalText>
       <ModalButtons>
         <ModalCancelButton onClick={() => setModalIsOpen(false)}>

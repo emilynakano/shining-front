@@ -5,7 +5,7 @@ import Fade from 'react-reveal/Fade';
 import { FiTrash2 } from 'react-icons/fi';
 
 export default function Note({
-  note, setModalIsOpen, setPostToDelete,
+  note, setModalIsOpen, setNoteToDelete,
 }) {
   const [click, setClick] = useState(false);
   return (
@@ -21,7 +21,7 @@ export default function Note({
                 size={20}
                 onClick={() => {
                   setModalIsOpen(true);
-                  setPostToDelete(note.id);
+                  setNoteToDelete(note.id);
                 }}
               />
             </Icon>

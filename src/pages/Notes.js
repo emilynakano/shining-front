@@ -16,7 +16,7 @@ export default function Notes() {
   const [atualization, setAtualization] = useState(false);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [postToDelete, setPostToDelete] = useState(null);
+  const [noteToDelete, setNoteToDelete] = useState(null);
 
   useEffect(() => {
     const promise = api.get('notes');
@@ -58,17 +58,17 @@ export default function Notes() {
             <Note
               note={note}
               setModalIsOpen={setModalIsOpen}
-              setPostToDelete={setPostToDelete}
+              setNoteToDelete={setNoteToDelete}
             />
 
           ))}
       </Container>
       <DeleteModel
-        notes={notes}
-        setNotes={setNotes}
         modalIsOpen={modalIsOpen}
         setModalIsOpen={setModalIsOpen}
-        postToDelete={postToDelete}
+        noteToDelete={noteToDelete}
+        atualization={atualization}
+        setAtualization={setAtualization}
       />
     </>
   );
