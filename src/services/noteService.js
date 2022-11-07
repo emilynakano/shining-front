@@ -1,5 +1,5 @@
 import api from './api';
 
-export default async function Delete(id) {
+export async function DeleteNote(id) {
   await api.delete(`/notes/${id}`);
 }
