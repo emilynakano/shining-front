@@ -55,14 +55,20 @@ export default function Notes() {
           )
           : notes.map((note) => (
 
-            <Note note={note} setModalIsOpen={setModalIsOpen} />
+            <Note
+              note={note}
+              setModalIsOpen={setModalIsOpen}
+              setPostToDelete={setPostToDelete}
+            />
 
           ))}
       </Container>
       <DeleteModel
+        notes={notes}
+        setNotes={setNotes}
         modalIsOpen={modalIsOpen}
         setModalIsOpen={setModalIsOpen}
-        setPostToDelete={setPostToDelete}
+        postToDelete={postToDelete}
       />
     </>
   );

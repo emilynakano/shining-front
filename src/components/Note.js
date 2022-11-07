@@ -1,22 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import MDEditor from '@uiw/react-md-editor';
 import Fade from 'react-reveal/Fade';
 import { FiTrash2 } from 'react-icons/fi';
-import Delete from '../services/noteService';
 
-export default function Note({ note, setModalIsOpen }) {
+export default function Note({
+  note, setModalIsOpen, setPostToDelete,
+}) {
   const [click, setClick] = useState(false);
-  const [deletedPost, setDeletedPost] = useState(-1);
-
-  async function DeleteNote() {
-    setModalIsOpen(true);
-  }
-  if (note.id === deletedPost) {
-    return (
-      <></>
-    );
-  }
   return (
     <>
       <Fade>
@@ -26,7 +17,13 @@ export default function Note({ note, setModalIsOpen }) {
               <h1>{note.title}</h1>
             </Title>
             <Icon>
-              <FiTrash2 size={20} onClick={() => DeleteNote()} />
+              <FiTrash2
+                size={20}
+                onClick={() => {
+                  setModalIsOpen(true);
+                  setPostToDelete(note.id);
+                }}
+              />
             </Icon>
           </Header>
           <DataNote>

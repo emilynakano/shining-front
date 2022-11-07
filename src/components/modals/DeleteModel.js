@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import Modal from 'react-modal';
 import styled from 'styled-components';
+import Delete from '../../services/noteService';
 
 const modalStyle = {
   content: {
@@ -28,7 +30,20 @@ const modalStyle = {
   },
 };
 
-export default function DeleteModel({ modalIsOpen, setModalIsOpen, setPostToDelete }) {
+export default function DeleteModel({
+  modalIsOpen, setModalIsOpen,
+  postToDelete, notes, setNotes,
+}) {
+  async function HandleDelete() {
+    try {
+      await Delete(postToDelete);
+      const filteredNotes = notes.filter((not) => not.id !== postToDelete);
+      setNotes(filteredNotes);
+      setModalIsOpen(false);
+    } catch {
+      alert(postToDelete);
+    }
+  }
   return (
     <Modal isOpen={modalIsOpen} style={modalStyle} closeTimeoutMS={500}>
       <ModalText>
@@ -38,7 +53,7 @@ export default function DeleteModel({ modalIsOpen, setModalIsOpen, setPostToDele
         <ModalCancelButton onClick={() => setModalIsOpen(false)}>
           No, go back
         </ModalCancelButton>
-        <ModalDeleteButton onClick={() => setPostToDelete(true)}>
+        <ModalDeleteButton onClick={() => HandleDelete()}>
           Yes, delete it
         </ModalDeleteButton>
       </ModalButtons>
