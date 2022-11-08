@@ -3,11 +3,13 @@ import styled from 'styled-components';
 import MDEditor from '@uiw/react-md-editor';
 import Fade from 'react-reveal/Fade';
 import { FiTrash2 } from 'react-icons/fi';
+import disabledEventPropagation from '../utils/eventPropagation';
 
 export default function Note({
   note, setModalIsOpen, setNoteToDelete,
 }) {
   const [click, setClick] = useState(false);
+
   return (
     <>
       <Fade>
@@ -16,14 +18,13 @@ export default function Note({
             <Title>
               <h1>{note.title}</h1>
             </Title>
-            <Icon>
-              <FiTrash2
-                size={20}
-                onClick={() => {
-                  setModalIsOpen(true);
-                  setNoteToDelete(note.id);
-                }}
-              />
+            <Icon onClick={(e) => {
+              disabledEventPropagation(e);
+              setModalIsOpen(true);
+              setNoteToDelete(note.id);
+            }}
+            >
+              <FiTrash2 size={20} />
             </Icon>
           </Header>
           <DataNote>
@@ -70,6 +71,10 @@ const Header = styled.div`
 `;
 
 const Icon = styled.div`
+  transition: color 0.2s;
+  &:hover {
+    color: red;
+  }
 `;
 
 const Row = styled.div`
