@@ -1,7 +1,7 @@
 import Modal from 'react-modal';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
-import { DeleteNote } from '../../services/noteService';
+import noteService from '../../services/noteService';
 
 const modalStyle = {
   content: {
@@ -35,9 +35,11 @@ export default function DeleteModel({
   noteToDelete, atualization,
   setAtualization,
 }) {
+  const { deleteNote } = noteService();
+
   async function HandleDelete() {
     try {
-      await DeleteNote(noteToDelete);
+      await deleteNote(noteToDelete);
       setAtualization(!atualization);
       setModalIsOpen(false);
     } catch {

@@ -4,7 +4,7 @@ import MDEditor from '@uiw/react-md-editor';
 import Fade from 'react-reveal/Fade';
 import { AiFillCheckCircle } from 'react-icons/ai';
 import { toast } from 'react-toastify';
-import api from '../services/api';
+import noteService from '../services/noteService';
 
 export default function NoteToday({ note, atualization, setAtualization }) {
   const [click, setClick] = useState(false);
@@ -33,9 +33,12 @@ function NoteContent({
   setClick, content, click, note, atualization, setAtualization,
 }) {
   const [review, setReview] = useState(false);
-  function Review() {
-    const promise = api.patch(`notes/${note.id}/review`, {});
-    promise.then((res) => {
+
+  const { reviewNote } = noteService();
+
+  async function Review() {
+    try {
+      await reviewNote(note.id);
       toast.success('Note successfully revised!');
       setReview(!review);
       setTimeout(() => {
@@ -43,10 +46,9 @@ function NoteContent({
         setReview(false);
         setClick(false);
       }, [2500]);
-    });
-    promise.catch((err) => {
-      console.log('err');
-    });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (

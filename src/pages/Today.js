@@ -1,17 +1,28 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
+import { toast } from 'react-toastify';
 import NoteToday from '../components/NoteToday';
 import Loading from '../components/Loading';
-import useApiPrivate from '../hooks/useApiPrivate';
+import noteService from '../services/noteService';
 
 export default function Today() {
-  const api = useApiPrivate();
   const [notes, setNotes] = useState(false);
   const [atualization, setAtualization] = useState(false);
+
+  const { getTodayNotes } = noteService();
+
   useEffect(() => {
-    const promise = api.get('notes/today');
-    promise.then((res) => setNotes(res.data));
+    async function fetchData() {
+      try {
+        const response = await getTodayNotes();
+        setNotes(response);
+      } catch (err) {
+        console.log(err);
+        toast.error('An error occurred while loading the notes');
+      }
+    }
+    fetchData();
   }, [atualization]);
   if (!notes) {
     return (
