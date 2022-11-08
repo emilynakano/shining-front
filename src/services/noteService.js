@@ -8,8 +8,7 @@ export default function noteService() {
   }
 
   async function reviewNote(id) {
-    const notes = await api.patch(`notes/${id}/review`, {});
-    return notes.data;
+    await api.patch(`notes/${id}/review`, {});
   }
 
   async function getNotes() {
