@@ -1,15 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import MDEditor from '@uiw/react-md-editor';
 import Fade from 'react-reveal/Fade';
+import { FiTrash2 } from 'react-icons/fi';
+import disabledEventPropagation from '../utils/eventPropagation';
 
-export default function Note({ note }) {
+export default function Note({
+  note, setModalIsOpen, setNoteToDelete,
+}) {
   const [click, setClick] = useState(false);
+
   return (
     <>
       <Fade>
         <Container className="hover" onClick={() => (click ? setClick(false) : setClick(true))}>
-          <Title><h1>{note.title}</h1></Title>
+          <Header>
+            <Title>
+              <h1>{note.title}</h1>
+            </Title>
+            <Icon onClick={(e) => {
+              disabledEventPropagation(e);
+              setModalIsOpen(true);
+              setNoteToDelete(note.id);
+            }}
+            >
+              <FiTrash2 size={20} />
+            </Icon>
+          </Header>
           <DataNote>
             <Date>
               <h2>
@@ -45,6 +62,19 @@ const Title = styled.div`
   white-space:nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+`;
+
+const Header = styled.div`
+  display:flex;
+  justify-content: space-between;
+  gap: 10px;
+`;
+
+const Icon = styled.div`
+  transition: color 0.2s;
+  &:hover {
+    color: red;
+  }
 `;
 
 const Row = styled.div`

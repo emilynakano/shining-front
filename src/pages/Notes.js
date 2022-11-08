@@ -7,12 +7,17 @@ import Note from '../components/Note';
 import CreateNote from '../components/CreateNote';
 import Loading from '../components/Loading';
 import useApiPrivate from '../hooks/useApiPrivate';
+import DeleteModel from '../components/modals/DeleteModel';
 
 export default function Notes() {
   const api = useApiPrivate();
   const [click, setClick] = useState(false);
   const [notes, setNotes] = useState(false);
   const [atualization, setAtualization] = useState(false);
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [noteToDelete, setNoteToDelete] = useState(null);
+
   useEffect(() => {
     const promise = api.get('notes');
     promise.then((res) => setNotes(res.data));
@@ -23,35 +28,49 @@ export default function Notes() {
     );
   }
   return (
-    <Container>
-      <Title>
-        <h2>NOTES</h2>
-        <AiFillPlusCircle
-          data-cy="button-add-note"
-          color="#C50B0B"
-          font-size={30}
-          onClick={() => setClick(!click)}
+    <>
+      <Container onClick={() => (modalIsOpen ? setModalIsOpen(false) : '')}>
+        <Title>
+          <h2>NOTES</h2>
+          <AiFillPlusCircle
+            data-cy="button-add-note"
+            color="#C50B0B"
+            font-size={30}
+            onClick={() => setClick(!click)}
+          />
+        </Title>
+        <CreateNote
+          click={click}
+          setClick={setClick}
+          atualization={atualization}
+          setAtualization={setAtualization}
         />
-      </Title>
-      <CreateNote
-        click={click}
-        setClick={setClick}
+        <Row />
+
+        {notes.length === 0
+          ? (
+            <Fade left cascade>
+              <h2 className="zeroNotes">There are no notes yet, create one.</h2>
+            </Fade>
+          )
+          : notes.map((note) => (
+
+            <Note
+              note={note}
+              setModalIsOpen={setModalIsOpen}
+              setNoteToDelete={setNoteToDelete}
+            />
+
+          ))}
+      </Container>
+      <DeleteModel
+        modalIsOpen={modalIsOpen}
+        setModalIsOpen={setModalIsOpen}
+        noteToDelete={noteToDelete}
         atualization={atualization}
         setAtualization={setAtualization}
       />
-      <Row />
-      {notes.length === 0
-        ? (
-          <Fade left cascade>
-            <h2 className="zeroNotes">There are no notes yet, create one.</h2>
-          </Fade>
-        )
-        : notes.map((note) => (
-
-          <Note note={note} />
-
-        ))}
-    </Container>
+    </>
   );
 }
 
