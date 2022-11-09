@@ -4,24 +4,25 @@ import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
 import { toast } from 'react-toastify';
 import api from '../services/api';
+import TextEditor from './TextEditor';
 
 export default function CreateNote({
   click, setClick, setAtualization, atualization,
 }) {
-  const mkString = `### Topics
-  
-  Lorem ipsum, or lipsum as it is sometimes known. 
-  `;
-  const [value, setValue] = useState(mkString);
+  const [content, setContent] = useState('');
   const [title, setTitle] = useState('');
 
   function createNote() {
     if (title === '') {
       return toast.error('Insert a title!');
     }
-    setValue(mkString);
-    const promise = api.post('notes', { content: value, title });
+    if (content === '') {
+      return toast.error('Insert something!');
+    }
+    const promise = api.post('notes', { content, title });
     promise.then((res) => {
+      setContent('');
+      setTitle('');
       setAtualization(!atualization);
       toast.success('Note created successfully!');
       setClick(false);
@@ -43,7 +44,7 @@ export default function CreateNote({
             placeholder="Insert your title here"
           />
         </Title>
-        <MDEditor data-cy="editor" height="55vh" value={value} onChange={setValue} />
+        <TextEditor setContent={setContent} content={content} />
         <Submit>
           <Button data-cy="button-submit" onClick={() => createNote()}>
             <span>Create</span>
