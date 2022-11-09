@@ -11,7 +11,6 @@ export default function Note({
   const [click, setClick] = useState(false);
 
   useEffect(() => {
-    console.log(clickCreateNote);
     if (clickCreateNote) {
       setClick(false);
     }
@@ -20,7 +19,7 @@ export default function Note({
   return (
     <>
       <Fade>
-        <Container className="hover" onClick={() => (click ? setClick(false) : setClick(true))}>
+        <Container className="hover" onClick={() => (clickCreateNote ? '' : setClick(!click))}>
           <Header>
             <Title>
               <h1>{note.title}</h1>
