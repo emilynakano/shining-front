@@ -67,6 +67,7 @@ export default function Notes() {
           : notes.map((note) => (
 
             <Note
+              clickCreateNote={click}
               note={note}
               setModalIsOpen={setModalIsOpen}
               setNoteToDelete={setNoteToDelete}

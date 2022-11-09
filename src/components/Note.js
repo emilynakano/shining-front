@@ -6,9 +6,16 @@ import { FiTrash2 } from 'react-icons/fi';
 import disabledEventPropagation from '../utils/eventPropagation';
 
 export default function Note({
-  note, setModalIsOpen, setNoteToDelete,
+  note, setModalIsOpen, setNoteToDelete, clickCreateNote,
 }) {
   const [click, setClick] = useState(false);
+
+  useEffect(() => {
+    console.log(clickCreateNote);
+    if (clickCreateNote) {
+      setClick(false);
+    }
+  }, [clickCreateNote]);
 
   return (
     <>
