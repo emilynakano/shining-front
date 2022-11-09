@@ -6,14 +6,27 @@ import { FiTrash2 } from 'react-icons/fi';
 import disabledEventPropagation from '../utils/eventPropagation';
 
 export default function Note({
-  note, setModalIsOpen, setNoteToDelete,
+  note, setModalIsOpen, setNoteToDelete, clickCreateNote, clickNoteId, setClickNoteId,
 }) {
-  const [click, setClick] = useState(false);
+  useEffect(() => {
+    if (clickCreateNote) {
+      setClickNoteId(-1);
+    }
+  }, [clickCreateNote]);
 
   return (
     <>
       <Fade>
-        <Container className="hover" onClick={() => (click ? setClick(false) : setClick(true))}>
+        <Container
+          className="hover"
+          onClick={() => {
+            if (!clickCreateNote) {
+              if (clickNoteId === note.id) {
+                setClickNoteId(-1);
+              } else setClickNoteId(note.id);
+            }
+          }}
+        >
           <Header>
             <Title>
               <h1>{note.title}</h1>
@@ -46,7 +59,7 @@ export default function Note({
         </Container>
       </Fade>
       <Row />
-      <NoteContent click={click} content={note.content} />
+      <NoteContent clickNoteId={clickNoteId} content={note.content} id={note.id} />
     </>
 
   );
@@ -126,13 +139,14 @@ const Progress = styled.div`
     }
 `;
 
-function NoteContent({ content, click }) {
+function NoteContent({ content, clickNoteId, id }) {
   return (
-    <Fade opposite collapse when={click}>
+    <Fade opposite collapse when={clickNoteId === id}>
       <Content data-color-mode="light">
         <MDEditor.Markdown
           source={content}
           linkTarget="_blank"
+          style={{ maxHeight: '350px', overflow: 'auto' }}
         />
       </Content>
     </Fade>

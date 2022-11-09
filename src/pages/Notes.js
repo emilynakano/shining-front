@@ -11,7 +11,9 @@ import DeleteModel from '../components/modals/DeleteModel';
 import noteService from '../services/noteService';
 
 export default function Notes() {
-  const [click, setClick] = useState(false);
+  const [clickCreateNote, setClickCreateNote] = useState(false);
+  const [clickNoteId, setClickNoteId] = useState(-1);
+
   const [notes, setNotes] = useState(false);
   const [atualization, setAtualization] = useState(false);
 
@@ -47,12 +49,12 @@ export default function Notes() {
             data-cy="button-add-note"
             color="#C50B0B"
             font-size={30}
-            onClick={() => setClick(!click)}
+            onClick={() => setClickCreateNote(!clickCreateNote)}
           />
         </Title>
         <CreateNote
-          click={click}
-          setClick={setClick}
+          clickCreateNote={clickCreateNote}
+          setClickCreateNote={setClickCreateNote}
           atualization={atualization}
           setAtualization={setAtualization}
         />
@@ -67,6 +69,9 @@ export default function Notes() {
           : notes.map((note) => (
 
             <Note
+              clickCreateNote={clickCreateNote}
+              clickNoteId={clickNoteId}
+              setClickNoteId={setClickNoteId}
               note={note}
               setModalIsOpen={setModalIsOpen}
               setNoteToDelete={setNoteToDelete}

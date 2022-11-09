@@ -1,30 +1,30 @@
-import MDEditor from '@uiw/react-md-editor';
 import { useState } from 'react';
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
 import { toast } from 'react-toastify';
 import api from '../services/api';
+import TextEditor from './TextEditor';
 
 export default function CreateNote({
-  click, setClick, setAtualization, atualization,
+  clickCreateNote, setClickCreateNote, setAtualization, atualization,
 }) {
-  const mkString = `### Topics
-  
-  Lorem ipsum, or lipsum as it is sometimes known. 
-  `;
-  const [value, setValue] = useState(mkString);
+  const [content, setContent] = useState('');
   const [title, setTitle] = useState('');
 
   function createNote() {
     if (title === '') {
       return toast.error('Insert a title!');
     }
-    setValue(mkString);
-    const promise = api.post('notes', { content: value, title });
+    if (content === '') {
+      return toast.error('Insert something!');
+    }
+    const promise = api.post('notes', { content, title });
     promise.then((res) => {
+      setContent('');
+      setTitle('');
       setAtualization(!atualization);
       toast.success('Note created successfully!');
-      setClick(false);
+      setClickCreateNote(false);
     });
     promise.catch((err) => {
       if (err.response.status === 409) {
@@ -34,16 +34,16 @@ export default function CreateNote({
   }
 
   return (
-    <Fade opposite collapse when={click}>
+    <Fade opposite collapse when={clickCreateNote}>
       <Editor data-color-mode="light">
         <Title>
           <Input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Insert your title here"
+            placeholder="Title"
           />
         </Title>
-        <MDEditor data-cy="editor" height="55vh" value={value} onChange={setValue} />
+        <TextEditor setContent={setContent} content={content} />
         <Submit>
           <Button data-cy="button-submit" onClick={() => createNote()}>
             <span>Create</span>
