@@ -12,6 +12,7 @@ export default function TextEditor({ setContent, content }) {
       showCharsCounter: false,
       showWordsCounter: false,
       showXPathInStatusbar: false,
+      disablePlugins: 'bold,class-span,fullsize,hr,search',
     },
     [],
   );

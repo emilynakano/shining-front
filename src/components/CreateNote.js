@@ -1,4 +1,3 @@
-import MDEditor from '@uiw/react-md-editor';
 import { useState } from 'react';
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
@@ -41,7 +40,7 @@ export default function CreateNote({
           <Input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Insert your title here"
+            placeholder="Title"
           />
         </Title>
         <TextEditor setContent={setContent} content={content} />
