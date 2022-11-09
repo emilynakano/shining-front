@@ -57,6 +57,7 @@ function NoteContent({
         <MDEditor.Markdown
           source={content}
           linkTarget="_blank"
+          style={{ maxHeight: '350px', overflow: 'auto' }}
         />
         <Icon review={review}>
           <AiFillCheckCircle onClick={() => Review()} className="icon" />

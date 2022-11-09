@@ -133,6 +133,7 @@ function NoteContent({ content, click }) {
         <MDEditor.Markdown
           source={content}
           linkTarget="_blank"
+          style={{ maxHeight: '350px', overflow: 'auto' }}
         />
       </Content>
     </Fade>
