@@ -6,7 +6,7 @@ import api from '../services/api';
 import TextEditor from './TextEditor';
 
 export default function CreateNote({
-  click, setClick, setAtualization, atualization,
+  clickCreateNote, setClickCreateNote, setAtualization, atualization,
 }) {
   const [content, setContent] = useState('');
   const [title, setTitle] = useState('');
@@ -24,7 +24,7 @@ export default function CreateNote({
       setTitle('');
       setAtualization(!atualization);
       toast.success('Note created successfully!');
-      setClick(false);
+      setClickCreateNote(false);
     });
     promise.catch((err) => {
       if (err.response.status === 409) {
@@ -34,7 +34,7 @@ export default function CreateNote({
   }
 
   return (
-    <Fade opposite collapse when={click}>
+    <Fade opposite collapse when={clickCreateNote}>
       <Editor data-color-mode="light">
         <Title>
           <Input
