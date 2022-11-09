@@ -9,6 +9,9 @@ export default function TextEditor({ setContent, content }) {
     {
       readonly: false,
       height: '50vh',
+      showCharsCounter: false,
+      showWordsCounter: false,
+      showXPathInStatusbar: false,
     },
     [],
   );
