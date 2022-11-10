@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import MDEditor from '@uiw/react-md-editor';
 import Fade from 'react-reveal/Fade';
-import { FiTrash2 } from 'react-icons/fi';
+import { FiTrash2, FiEdit3 } from 'react-icons/fi';
 import disabledEventPropagation from '../utils/eventPropagation';
 
 export default function Note({
@@ -31,13 +31,17 @@ export default function Note({
             <Title>
               <h1>{note.title}</h1>
             </Title>
-            <Icon onClick={(e) => {
-              disabledEventPropagation(e);
-              setModalIsOpen(true);
-              setNoteToDelete(note.id);
-            }}
-            >
-              <FiTrash2 size={20} />
+            <Icon>
+              <FiEdit3 className="edit" size={20} />
+              <FiTrash2
+                className="trash"
+                size={20}
+                onClick={(e) => {
+                  disabledEventPropagation(e);
+                  setModalIsOpen(true);
+                  setNoteToDelete(note.id);
+                }}
+              />
             </Icon>
           </Header>
           <DataNote>
@@ -84,10 +88,21 @@ const Header = styled.div`
 `;
 
 const Icon = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
   transition: color 0.2s;
-  &:hover {
-    color: red;
+  .trash {
+    &:hover {
+      color: red;
+    }
   }
+  .edit {
+    &:hover {
+      color: yellow;
+    } 
+  }
+
 `;
 
 const Row = styled.div`
