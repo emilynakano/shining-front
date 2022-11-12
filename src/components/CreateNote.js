@@ -18,6 +18,7 @@ export default function CreateNote({
     if (content === '') {
       return toast.error('Insert something!');
     }
+
     const promise = api.post('notes', { content, title });
     promise.then((res) => {
       setContent('');

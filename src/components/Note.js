@@ -4,10 +4,13 @@ import MDEditor from '@uiw/react-md-editor';
 import Fade from 'react-reveal/Fade';
 import { FiTrash2, FiEdit3 } from 'react-icons/fi';
 import disabledEventPropagation from '../utils/eventPropagation';
+import TextEditor from './TextEditor';
 
 export default function Note({
   note, setModalIsOpen, setNoteToDelete, clickCreateNote, clickNoteId, setClickNoteId,
 }) {
+  const [edit, setEdit] = useState(false);
+
   useEffect(() => {
     if (clickCreateNote) {
       setClickNoteId(-1);
@@ -21,6 +24,9 @@ export default function Note({
           className="hover"
           onClick={() => {
             if (!clickCreateNote) {
+              if (edit) {
+                setEdit(false);
+              }
               if (clickNoteId === note.id) {
                 setClickNoteId(-1);
               } else setClickNoteId(note.id);
@@ -31,13 +37,34 @@ export default function Note({
             <Title>
               <h1>{note.title}</h1>
             </Title>
-            <Icon>
-              <FiEdit3 className="edit" size={20} />
+            <Icon onClick={(e) => disabledEventPropagation(e)}>
+              <FiEdit3
+                className="edit"
+                size={20}
+                onClick={() => {
+                  if (!clickCreateNote) {
+                    if (clickNoteId === note.id && edit) {
+                      setEdit(false);
+                      setClickNoteId(-1);
+                    }
+                    if (clickNoteId === note.id && !edit) {
+                      setEdit(true);
+                    }
+                    if (clickNoteId !== note.id && !edit) {
+                      setClickNoteId(note.id);
+                      setEdit(true);
+                    }
+                    if (clickNoteId !== note.id && edit) {
+                      setClickNoteId(note.id);
+                      setEdit(true);
+                    }
+                  }
+                }}
+              />
               <FiTrash2
                 className="trash"
                 size={20}
                 onClick={(e) => {
-                  disabledEventPropagation(e);
                   setModalIsOpen(true);
                   setNoteToDelete(note.id);
                 }}
@@ -63,16 +90,76 @@ export default function Note({
         </Container>
       </Fade>
       <Row />
-      <NoteContent clickNoteId={clickNoteId} content={note.content} id={note.id} />
+
+      {clickNoteId === note.id && !edit
+        ? (
+
+          <NoteContent
+            clickNoteId={clickNoteId}
+            content={note.content}
+            id={note.id}
+            edit={edit}
+          />
+        )
+        : (
+          <EditNote
+            edit={edit}
+            clickNoteId={clickNoteId}
+            id={note.id}
+            content={note.content}
+            note={note}
+          />
+        )}
+
     </>
 
   );
 }
 
 const Content = styled.div`
-    padding: 15px;
+          .fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  }
+  @-webkit-keyframes fadeOut {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+  }
+  @keyframes fadeOut {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+  } 
+    .fadeIn {
+      padding: 15px;
     background: white;
     border-radius: 5px;
+  -webkit-animation-name: ${(props) => (props.con ? 'fadeIn' : 'fadeInR')};
+  animation-name: ${(props) => (props.con ? 'fadeIn' : 'fadeInR')};
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  }
+  @-webkit-keyframes fadeInR {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+  }
+  @keyframes fadeInR {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+  } 
+  @-webkit-keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+  }
+  @keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+  } 
 `;
 
 const Title = styled.div`
@@ -154,15 +241,35 @@ const Progress = styled.div`
     }
 `;
 
-function NoteContent({ content, clickNoteId, id }) {
+function NoteContent({
+  content, clickNoteId, id, edit,
+}) {
   return (
-    <Fade opposite collapse when={clickNoteId === id}>
-      <Content data-color-mode="light">
+    <Content data-color-mode="light" con={clickNoteId === id && !edit}>
+      <div className={clickNoteId === id && !edit ? 'fadeIn' : 'fadeOut'}>
         <MDEditor.Markdown
           source={content}
           linkTarget="_blank"
           style={{ maxHeight: '350px', overflow: 'auto' }}
         />
+      </div>
+
+    </Content>
+
+  );
+}
+
+function EditNote({
+  clickNoteId, id, edit, note, content,
+}) {
+  const [contenta, setContenta] = useState(content);
+  if (contenta !== content) {
+    setContenta(content);
+  }
+  return (
+    <Fade opposite collapse when={clickNoteId === id && edit}>
+      <Content data-color-mode="light">
+        <TextEditor content={contenta} setContent={setContenta} />
       </Content>
     </Fade>
   );
