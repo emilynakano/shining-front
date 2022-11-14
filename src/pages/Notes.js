@@ -75,6 +75,8 @@ export default function Notes() {
               note={note}
               setModalIsOpen={setModalIsOpen}
               setNoteToDelete={setNoteToDelete}
+              atualization={atualization}
+              setAtualization={setAtualization}
             />
 
           ))}

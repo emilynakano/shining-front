@@ -1,18 +1,32 @@
 import { useState } from 'react';
 import { Fade } from 'react-reveal';
 import styled from 'styled-components';
+import { toast } from 'react-toastify';
 import TextEditor from '../TextEditor';
+import noteService from '../../services/noteService';
 
 export default function EditNote({
-  edit, note,
+  edit, setEdit, note, setAtualization, atualization, setClickNoteId,
 }) {
+  const { editNote } = noteService();
   const [content, setContent] = useState(note.content);
 
   if (content !== note.content && !edit) {
     setContent(note.content);
   }
-  function HandleEdit() {
-    alert(content);
+  async function HandleEdit() {
+    try {
+      await editNote({ id: note.id, content });
+      setAtualization(!atualization);
+      toast.success('Note edited successfully');
+      setClickNoteId(-1);
+      setEdit(false);
+    } catch (error) {
+      if (error.response.status === 422) {
+        return toast.error('Blank notes are not allowed!');
+      }
+      toast.error('An error occurred while deleting this note');
+    }
   }
   return (
     <Fade>

@@ -7,7 +7,8 @@ import EditNote from './EditNote';
 import NoteContent from './NoteContent';
 
 export default function Note({
-  note, setModalIsOpen, setNoteToDelete, clickCreateNote, clickNoteId, setClickNoteId,
+  note, setModalIsOpen, setNoteToDelete, clickCreateNote,
+  clickNoteId, setClickNoteId, setAtualization, atualization,
 }) {
   const [edit, setEdit] = useState(false);
 
@@ -95,7 +96,11 @@ export default function Note({
         ? (
           <EditNote
             edit={edit}
+            setEdit={setEdit}
             note={note}
+            atualization={atualization}
+            setAtualization={setAtualization}
+            setClickNoteId={setClickNoteId}
           />
 
         )
