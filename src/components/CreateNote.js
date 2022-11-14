@@ -44,7 +44,7 @@ export default function CreateNote({
             placeholder="Title"
           />
         </Title>
-        <TextEditor setContent={setContent} content={content} />
+        <TextEditor height="50vh" setContent={setContent} content={content} />
         <Submit>
           <Button data-cy="button-submit" onClick={() => createNote()}>
             <span>Create</span>

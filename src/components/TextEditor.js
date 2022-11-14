@@ -2,13 +2,15 @@
 import React, { useState, useRef, useCallback } from 'react';
 import JoditEditor from 'jodit-react';
 
-export default function TextEditor({ setContent, content }) {
+export default function TextEditor({
+  setContent, content, height,
+}) {
   const editor = useRef(null);
 
   const config = useCallback(
     {
       readonly: false,
-      height: '50vh',
+      height,
       showCharsCounter: false,
       showWordsCounter: false,
       showXPathInStatusbar: false,

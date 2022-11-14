@@ -91,23 +91,21 @@ export default function Note({
       </Fade>
       <Row />
 
-      {clickNoteId === note.id && !edit
+      {clickNoteId === note.id && edit
         ? (
+          <EditNote
+            edit={edit}
+            note={note}
+          />
+
+        )
+        : (
 
           <NoteContent
             clickNoteId={clickNoteId}
             content={note.content}
             id={note.id}
             edit={edit}
-          />
-        )
-        : (
-          <EditNote
-            edit={edit}
-            clickNoteId={clickNoteId}
-            id={note.id}
-            content={note.content}
-            note={note}
           />
         )}
 
@@ -117,49 +115,9 @@ export default function Note({
 }
 
 const Content = styled.div`
-          .fadeOut {
-  -webkit-animation-name: fadeOut;
-  animation-name: fadeOut;
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  }
-  @-webkit-keyframes fadeOut {
-  0% {opacity: 1;}
-  100% {opacity: 0;}
-  }
-  @keyframes fadeOut {
-  0% {opacity: 1;}
-  100% {opacity: 0;}
-  } 
-    .fadeIn {
-      padding: 15px;
-    background: white;
-    border-radius: 5px;
-  -webkit-animation-name: ${(props) => (props.con ? 'fadeIn' : 'fadeInR')};
-  animation-name: ${(props) => (props.con ? 'fadeIn' : 'fadeInR')};
-  -webkit-animation-duration: 1s;
-  animation-duration: 1s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
-  }
-  @-webkit-keyframes fadeInR {
-  0% {opacity: 1;}
-  100% {opacity: 0;}
-  }
-  @keyframes fadeInR {
-  0% {opacity: 1;}
-  100% {opacity: 0;}
-  } 
-  @-webkit-keyframes fadeIn {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
-  }
-  @keyframes fadeIn {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
-  } 
+  padding: 15px;
+  background: white;
+  border-radius: 5px;
 `;
 
 const Title = styled.div`
@@ -214,7 +172,7 @@ const Container = styled.div`
     -o-transition: all .4s ease-in-out;
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
-}
+   }
 
 `;
 
@@ -241,36 +199,75 @@ const Progress = styled.div`
     }
 `;
 
+const ContentEdit = styled.div`
+   
+`;
+
+const Button = styled.div`
+  display: flex;
+  justify-content: end;
+  div {
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    cursor: pointer;
+    width: 100px;
+    height: 25px;
+    border: none;
+    background-color:#6baaf7; 
+    border-radius: 50px 50px 0 50px;
+    position:relative;
+    z-index:12;
+    margin-top: -26px;
+    
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+  }
+ 
+`;
+
 function NoteContent({
   content, clickNoteId, id, edit,
 }) {
   return (
-    <Content data-color-mode="light" con={clickNoteId === id && !edit}>
-      <div className={clickNoteId === id && !edit ? 'fadeIn' : 'fadeOut'}>
+    <Fade opposite collapse when={clickNoteId === id && !edit}>
+
+      <Content data-color-mode="light" con={clickNoteId === id && !edit}>
         <MDEditor.Markdown
           source={content}
           linkTarget="_blank"
           style={{ maxHeight: '350px', overflow: 'auto' }}
         />
-      </div>
 
-    </Content>
+      </Content>
+    </Fade>
 
   );
 }
 
 function EditNote({
-  clickNoteId, id, edit, note, content,
+  edit, note,
 }) {
-  const [contenta, setContenta] = useState(content);
-  if (contenta !== content) {
-    setContenta(content);
+  const [content, setContent] = useState(note.content);
+
+  if (content !== note.content && !edit) {
+    setContent(note.content);
+  }
+  function HandleEdit() {
+    alert(content);
   }
   return (
-    <Fade opposite collapse when={clickNoteId === id && edit}>
-      <Content data-color-mode="light">
-        <TextEditor content={contenta} setContent={setContenta} />
-      </Content>
+    <Fade>
+      <ContentEdit>
+        <TextEditor height="20vh" content={content} setContent={setContent} />
+      </ContentEdit>
+      <Button onClick={() => HandleEdit()}>
+        <div>
+          Update
+        </div>
+      </Button>
     </Fade>
   );
 }
