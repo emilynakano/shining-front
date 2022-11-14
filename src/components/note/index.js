@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import MDEditor from '@uiw/react-md-editor';
 import Fade from 'react-reveal/Fade';
 import { FiTrash2, FiEdit3 } from 'react-icons/fi';
 import disabledEventPropagation from '../../utils/eventPropagation';
-import TextEditor from '../TextEditor';
 import EditNote from './EditNote';
+import NoteContent from './NoteContent';
 
 export default function Note({
   note, setModalIsOpen, setNoteToDelete, clickCreateNote, clickNoteId, setClickNoteId,
@@ -115,12 +114,6 @@ export default function Note({
   );
 }
 
-const Content = styled.div`
-  padding: 15px;
-  background: white;
-  border-radius: 5px;
-`;
-
 const Title = styled.div`
   white-space:nowrap;
   overflow: hidden;
@@ -199,22 +192,3 @@ const Progress = styled.div`
     color: ${(props) => (props.progress === 'lost' ? 'red' : '#2FDB2F')};
     }
 `;
-
-function NoteContent({
-  content, clickNoteId, id, edit,
-}) {
-  return (
-    <Fade opposite collapse when={clickNoteId === id && !edit}>
-
-      <Content data-color-mode="light" con={clickNoteId === id && !edit}>
-        <MDEditor.Markdown
-          source={content}
-          linkTarget="_blank"
-          style={{ maxHeight: '350px', overflow: 'auto' }}
-        />
-
-      </Content>
-    </Fade>
-
-  );
-}
