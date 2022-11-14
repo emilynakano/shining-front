@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
 import { toast } from 'react-toastify';
-import Note from '../components/Note';
+import Note from '../components/note';
 import CreateNote from '../components/CreateNote';
 import Loading from '../components/Loading';
 import DeleteModel from '../components/modals/DeleteModel';
@@ -75,6 +75,8 @@ export default function Notes() {
               note={note}
               setModalIsOpen={setModalIsOpen}
               setNoteToDelete={setNoteToDelete}
+              atualization={atualization}
+              setAtualization={setAtualization}
             />
 
           ))}

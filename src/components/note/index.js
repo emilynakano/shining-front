@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import MDEditor from '@uiw/react-md-editor';
 import Fade from 'react-reveal/Fade';
-import { FiTrash2 } from 'react-icons/fi';
-import disabledEventPropagation from '../utils/eventPropagation';
+import { FiTrash2, FiEdit3 } from 'react-icons/fi';
+import disabledEventPropagation from '../../utils/eventPropagation';
+import EditNote from './EditNote';
+import NoteContent from './NoteContent';
 
 export default function Note({
-  note, setModalIsOpen, setNoteToDelete, clickCreateNote, clickNoteId, setClickNoteId,
+  note, setModalIsOpen, setNoteToDelete, clickCreateNote,
+  clickNoteId, setClickNoteId, setAtualization, atualization,
 }) {
+  const [edit, setEdit] = useState(false);
+
   useEffect(() => {
     if (clickCreateNote) {
       setClickNoteId(-1);
@@ -21,6 +25,9 @@ export default function Note({
           className="hover"
           onClick={() => {
             if (!clickCreateNote) {
+              if (edit) {
+                setEdit(false);
+              }
               if (clickNoteId === note.id) {
                 setClickNoteId(-1);
               } else setClickNoteId(note.id);
@@ -31,13 +38,38 @@ export default function Note({
             <Title>
               <h1>{note.title}</h1>
             </Title>
-            <Icon onClick={(e) => {
-              disabledEventPropagation(e);
-              setModalIsOpen(true);
-              setNoteToDelete(note.id);
-            }}
-            >
-              <FiTrash2 size={20} />
+            <Icon onClick={(e) => disabledEventPropagation(e)}>
+              <FiEdit3
+                className="edit"
+                size={20}
+                onClick={() => {
+                  if (!clickCreateNote) {
+                    if (clickNoteId === note.id && edit) {
+                      setEdit(false);
+                      setClickNoteId(-1);
+                    }
+                    if (clickNoteId === note.id && !edit) {
+                      setEdit(true);
+                    }
+                    if (clickNoteId !== note.id && !edit) {
+                      setClickNoteId(note.id);
+                      setEdit(true);
+                    }
+                    if (clickNoteId !== note.id && edit) {
+                      setClickNoteId(note.id);
+                      setEdit(true);
+                    }
+                  }
+                }}
+              />
+              <FiTrash2
+                className="trash"
+                size={20}
+                onClick={(e) => {
+                  setModalIsOpen(true);
+                  setNoteToDelete(note.id);
+                }}
+              />
             </Icon>
           </Header>
           <DataNote>
@@ -59,17 +91,33 @@ export default function Note({
         </Container>
       </Fade>
       <Row />
-      <NoteContent clickNoteId={clickNoteId} content={note.content} id={note.id} />
+
+      {clickNoteId === note.id && edit
+        ? (
+          <EditNote
+            edit={edit}
+            setEdit={setEdit}
+            note={note}
+            atualization={atualization}
+            setAtualization={setAtualization}
+            setClickNoteId={setClickNoteId}
+          />
+
+        )
+        : (
+
+          <NoteContent
+            clickNoteId={clickNoteId}
+            content={note.content}
+            id={note.id}
+            edit={edit}
+          />
+        )}
+
     </>
 
   );
 }
-
-const Content = styled.div`
-    padding: 15px;
-    background: white;
-    border-radius: 5px;
-`;
 
 const Title = styled.div`
   white-space:nowrap;
@@ -84,10 +132,21 @@ const Header = styled.div`
 `;
 
 const Icon = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
   transition: color 0.2s;
-  &:hover {
-    color: red;
+  .trash {
+    &:hover {
+      color: red;
+    }
   }
+  .edit {
+    &:hover {
+      color: yellow;
+    } 
+  }
+
 `;
 
 const Row = styled.div`
@@ -112,7 +171,7 @@ const Container = styled.div`
     -o-transition: all .4s ease-in-out;
     -webkit-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
-}
+   }
 
 `;
 
@@ -138,17 +197,3 @@ const Progress = styled.div`
     color: ${(props) => (props.progress === 'lost' ? 'red' : '#2FDB2F')};
     }
 `;
-
-function NoteContent({ content, clickNoteId, id }) {
-  return (
-    <Fade opposite collapse when={clickNoteId === id}>
-      <Content data-color-mode="light">
-        <MDEditor.Markdown
-          source={content}
-          linkTarget="_blank"
-          style={{ maxHeight: '350px', overflow: 'auto' }}
-        />
-      </Content>
-    </Fade>
-  );
-}

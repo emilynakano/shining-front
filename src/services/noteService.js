@@ -3,6 +3,10 @@ import useApiPrivate from '../hooks/useApiPrivate';
 export default function noteService() {
   const api = useApiPrivate();
 
+  async function editNote({ id, content }) {
+    await api.patch(`/notes/${id}`, { content });
+  }
+
   async function deleteNote(id) {
     await api.delete(`/notes/${id}`);
   }
@@ -22,6 +26,6 @@ export default function noteService() {
   }
 
   return {
-    deleteNote, getNotes, getTodayNotes, reviewNote,
+    deleteNote, getNotes, getTodayNotes, reviewNote, editNote,
   };
 }

@@ -18,6 +18,7 @@ export default function CreateNote({
     if (content === '') {
       return toast.error('Insert something!');
     }
+
     const promise = api.post('notes', { content, title });
     promise.then((res) => {
       setContent('');
@@ -43,7 +44,7 @@ export default function CreateNote({
             placeholder="Title"
           />
         </Title>
-        <TextEditor setContent={setContent} content={content} />
+        <TextEditor height="50vh" setContent={setContent} content={content} />
         <Submit>
           <Button data-cy="button-submit" onClick={() => createNote()}>
             <span>Create</span>
