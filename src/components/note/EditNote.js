@@ -14,11 +14,12 @@ export default function EditNote({
   if (content !== note.content && !edit) {
     setContent(note.content);
   }
+
   async function HandleEdit() {
     try {
       await editNote({ id: note.id, content });
       setAtualization(!atualization);
-      toast.success('Note edited successfully');
+      toast.success('Note edited successfully!');
       setClickNoteId(-1);
       setEdit(false);
     } catch (error) {
