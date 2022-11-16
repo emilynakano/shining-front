@@ -1,11 +1,13 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import logo from '../assets/images/logo.png';
 
 export default function Header() {
+  const navigate = useNavigate();
   return (
     <Container>
       <Main>
-        <img src={logo} alt="shinning" />
+        <img onClick={() => navigate('/')} src={logo} alt="shinning" />
         <h1>You will never forget!</h1>
       </Main>
       <Row />
@@ -32,6 +34,7 @@ const Main = styled.div`
     
     img {
         height: 50px;
+        cursor: pointer;
     }
 
     h1 {
