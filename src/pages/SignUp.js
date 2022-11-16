@@ -88,6 +88,11 @@ export default function SignUp() {
           data-cy="input-confirm-password"
         />
         <Button text="Create Account" loading={loading} data-cy="button-submit" type="submit" />
+        <h2>
+          Already have an account?
+          {' '}
+          <span className="red" onClick={() => navigate('/sign-in')}>Sign in</span>
+        </h2>
       </Form>
     </>
 

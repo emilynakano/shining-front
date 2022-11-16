@@ -60,8 +60,12 @@ export default function SignIn() {
           data-cy="input-password"
         />
         <Button text="Log in" loading={loading} data-cy="button-submit" type="submit" />
+        <h2>
+          Don't have an account yet?
+          {' '}
+          <span className="red" onClick={() => navigate('/sign-up')}>Register</span>
+        </h2>
       </Form>
     </>
-
   );
 }

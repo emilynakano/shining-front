@@ -21,6 +21,16 @@ const Form = styled.form`
   input:-webkit-autofill {
       -webkit-text-fill-color: white !important;
   }
+
+  h2 {
+    margin-top: 10px;
+    color: white;
+    font-weight: 700;
+  }
+  .red {
+    color: red;
+    cursor: pointer;
+  }
   
 `;
 
