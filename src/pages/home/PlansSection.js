@@ -20,8 +20,8 @@ export default function PlansSection() {
             <h1>R$ 00,00/mounth</h1>
             <h1>5 notes/day</h1>
           </Text>
-          <div onClick={() => navigate('/sign-up')}>
-            <Button onClick={() => navigate('/sign-up')} text="GET STARTED" />
+          <div onClick={() => navigate('/sign-up', { state: { plan: 'free' } })}>
+            <Button text="GET STARTED" />
           </div>
         </Plan>
         <Plan>
@@ -30,7 +30,9 @@ export default function PlansSection() {
             <h1>R$ 10,00/mounth</h1>
             <h1>Ilimited Notes</h1>
           </Text>
-          <Button text="GET STARTED" />
+          <div onClick={() => navigate('/sign-up', { state: { plan: 'premium' } })}>
+            <Button text="GET STARTED" />
+          </div>
         </Plan>
       </Plans>
     </Container>
