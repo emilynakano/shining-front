@@ -39,7 +39,17 @@ const Container = styled.div`
   height: calc(100vh - 60px);
   img {
     width: 60px;
+    @keyframes go-back {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(10px);
+    }
+    }
+    animation: go-back 1s infinite alternate;
   }
+
 `;
 
 const Main = styled.div`
