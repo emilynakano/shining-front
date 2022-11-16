@@ -11,7 +11,7 @@ function PrivateRouter({ children }) {
         {children}
       </>
     )
-    : <Navigate to="/sign-in" replace />;
+    : <Navigate to="/" replace />;
 }
 
 export default PrivateRouter;
