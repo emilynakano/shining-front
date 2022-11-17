@@ -1,5 +1,6 @@
 import { AiOutlineRight } from 'react-icons/ai';
 import styled from 'styled-components';
+import CreditCardForm from './creditCardForm';
 
 export default function Subscription() {
   return (
@@ -14,7 +15,7 @@ export default function Subscription() {
             <AiOutlineRight color="white" size="50" />
           </div>
           <div>
-            <h2>Here will be the payment field</h2>
+            <CreditCardForm />
           </div>
         </div>
       </Box>
@@ -60,7 +61,6 @@ const Box = styled.div`
             &:nth-child(2) {
                 display: flex;
                 flex-direction: column;
-                display: none;
             }
         }
     }
