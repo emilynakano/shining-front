@@ -12,7 +12,7 @@ import { useAuth } from '../hooks/useAuth';
 
 export default function SignUp() {
   const { state } = useLocation();
-  console.log(state?.plan);
+  const plan = state?.plan;
 
   const { signUpAndLogin } = useAuth();
   const [loading, setLoading] = useState(false);

@@ -9,6 +9,7 @@ import UserHome from '../pages/UserHome';
 
 import PrivateRouter from './PrivateRouter';
 import PublicRouter from './PublicRouter';
+import Plan from '../pages/Plan';
 
 export default function Routes() {
   return (
@@ -35,6 +36,12 @@ export default function Routes() {
           <PublicRouter>
             <SignIn />
           </PublicRouter>
+        )}
+      />
+      <Route
+        path="/plan"
+        element={(
+          <Plan />
         )}
       />
       <Route
