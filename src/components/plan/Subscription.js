@@ -1,13 +1,15 @@
+import { useState } from 'react';
 import { AiOutlineRight } from 'react-icons/ai';
 import styled from 'styled-components';
 import CreditCardForm from './creditCardForm';
 
 export default function Subscription() {
+  const [openCard, setOpenCard] = useState(false);
   return (
     <Container>
       <h2>Payment</h2>
-      <Box>
-        <div>
+      <Box openCard={openCard}>
+        <div onClick={() => setOpenCard(!openCard)}>
           <h2>Credit Card</h2>
           <AiOutlineRight color="white" size="50" />
         </div>
@@ -43,7 +45,7 @@ const Box = styled.div`
       }
   > * {
         &:nth-child(2) {
-          display: flex;
+          display: ${(props) => (props.openCard ? 'flex' : 'none')};
           flex-direction: column;
         }
       }
