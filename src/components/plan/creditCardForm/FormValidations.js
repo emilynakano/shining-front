@@ -4,28 +4,28 @@ const validations = {
   name: {
     custom: {
       isValid: (value) => isValidString(value),
-      message: 'Digite um nome válido',
+      message: 'Please enter a valid name',
     },
   },
 
   number: {
     custom: {
       isValid: (value) => parseInt(value?.length, 10) >= 16,
-      message: 'Digite um numero de cartão de crédito válido',
+      message: 'Please enter a valid credit card number',
     },
   },
 
   cvc: {
     custom: {
-      isValid: (value) => parseInt(value?.length, 10) === 3,
-      message: 'Digite um código de segurança válido',
+      isValid: (value) => parseInt(value?.length, 10) === 3 || parseInt(value?.length, 10) === 4,
+      message: 'Please enter a valid security code',
     },
   },
 
   expiry: {
     custom: {
-      isValid: (value) => value.match(/^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/),
-      message: 'Digite uma data de expiração válida',
+      isValid: (value) => value.match(/^(0[1-9]|1[0-2])\/?([2-9]{4}|[2-9]{2})$/),
+      message: 'Please enter a valid expiration date',
     },
   },
 };

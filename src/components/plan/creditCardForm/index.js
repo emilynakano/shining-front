@@ -171,7 +171,6 @@ const PaymentCard = styled.div`
 `;
 const FormWrapper = styled.div`
   width: 100%;
-  padding-right: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -182,7 +181,7 @@ const FormWrapper = styled.div`
 `;
 
 const ConfirmButton = styled.input`
-  width: 80%;
+  width: 100%;
   height: 55px;
   margin-top: 14px;
   background-color: #e0e0e0;

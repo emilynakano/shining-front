@@ -5,18 +5,14 @@ import CreditCardForm from './creditCardForm';
 export default function Subscription() {
   return (
     <Container>
-      <h2>To sign</h2>
+      <h2>Payment</h2>
       <Box>
-        <h2>Monthly signature</h2>
-        <h2>R$ 10.00/month</h2>
-        <div className="creditCard">
-          <div>
-            <h2>Credit Card</h2>
-            <AiOutlineRight color="white" size="50" />
-          </div>
-          <div>
-            <CreditCardForm />
-          </div>
+        <div>
+          <h2>Credit Card</h2>
+          <AiOutlineRight color="white" size="50" />
+        </div>
+        <div>
+          <CreditCardForm />
         </div>
       </Box>
     </Container>
@@ -24,50 +20,37 @@ export default function Subscription() {
 }
 
 const Box = styled.div`
-    width: 100%;
-    max-width: 547px;
+  width: 100%;
+  max-width: 547px;
+  margin-top: 10px;
 
-    mix-blend-mode: normal;
-    border: 3px solid #FFFFFF;
+  border: 2px solid #8F8383;
+  padding: 10px;
 
-    padding: 20px;
-    
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content:Center;
 
-    .creditCard {
-      cursor: pointer;
+  > * {
+        &:first-child {
+          display: flex;
+          align-items:Center;
+          justify-content: space-between;
+          height: 89px;
+          cursor: pointer;
 
-      width: 100%;
-      margin-top: 10px;
-
-      border: 2px solid #8F8383;
-      padding-left: 10px;
-
-      display: flex;
-      flex-direction: column;
-      justify-content:Center;
-
-      > * {
-            &:first-child {
-                display: flex;
-                align-items:Center;
-                justify-content: space-between;
-                height: 89px;
-            }
         }
-        > * {
-            &:nth-child(2) {
-                display: flex;
-                flex-direction: column;
-            }
+      }
+  > * {
+        &:nth-child(2) {
+          display: flex;
+          flex-direction: column;
         }
-    }
+      }
 `;
 
 const Container = styled.div`
-    width: 80%;
+    width: 85%;
     max-width: 545px;
     display: flex;
     flex-direction: column;
