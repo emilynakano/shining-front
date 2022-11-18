@@ -40,7 +40,6 @@ const Box = styled.div`
           justify-content: space-between;
           height: 89px;
           cursor: pointer;
-
         }
       }
   > * {

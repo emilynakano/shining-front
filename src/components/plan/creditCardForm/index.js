@@ -1,6 +1,4 @@
 /* eslint-disable no-param-reassign */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable no-shadow */
 import { useState } from 'react';
 import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
@@ -13,7 +11,7 @@ import InputStyle from '../../form/Input';
 import { useForm } from '../../../hooks/useForm';
 import { ErrorMsg } from './ErrorMsg';
 
-export default function CreditCardForm(props) {
+export default function CreditCardForm() {
   const [card, setCard] = useState({
     cvc: '',
     expiry: '',
@@ -23,44 +21,16 @@ export default function CreditCardForm(props) {
   });
 
   const {
-    handleSubmit, handleChange, data, errors, setData, customHandleChange,
+    handleSubmit, handleChange, errors,
   } = useForm({
     validations: FormValidations,
     onSubmit: async (data) => {
-      let totalPrice;
-      let paymentData;
-      let reserveData;
-      if (props.choiceHosting[0]) {
-        totalPrice = Number(props.choiceTicket[0].price) + Number(props.choiceHosting[0].price);
-        paymentData = { ...data, totalPrice };
-        reserveData = {
-          ticketId: props.choiceTicket[0].id,
-          hostingId: props.choiceHosting[0].id,
-          totalPrice,
-        };
-      } else {
-        totalPrice = Number(props.choiceTicket[0].price);
-        paymentData = { ...data, totalPrice };
-        reserveData = {
-          ticketId: props.choiceTicket[0].id,
-          hostingId: 1,
-          totalPrice,
-        };
-      }
-
       try {
-        console.log(paymentData); // substitute this with payment transaction
-        toast('Ingresso comprado com Sucesso!');
+        // payment here
+        console.log(data);
       } catch (err) {
-        toast('Não foi possível comprar!');
+        toast('An error occurred, check your data card!');
       }
-      await props.setPaymentConfirmed(true);
-    },
-    initialValues: {
-      cvc: '',
-      expiry: '',
-      name: '',
-      number: '',
     },
   });
   const handleCardChange = ({ target }) => {
@@ -141,7 +111,7 @@ export default function CreditCardForm(props) {
               handleCardChange(e);
             }}
             onFocus={(e) => handleInputFocus(e)}
-            maxLength="3"
+            maxLength="4"
             minLength="3"
             required
           />
