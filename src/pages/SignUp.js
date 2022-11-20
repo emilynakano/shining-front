@@ -33,6 +33,9 @@ export default function SignUp() {
     setLoading(true);
     try {
       await signUpAndLogin(user);
+      if (plan === 'premium') {
+        return navigate('/plan');
+      }
       toast.success('Account created successfully!');
       setTimeout(() => {
         navigate('/home');

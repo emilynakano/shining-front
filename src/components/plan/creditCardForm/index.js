@@ -4,14 +4,18 @@ import Cards from 'react-credit-cards';
 import 'react-credit-cards/es/styles-compiled.css';
 import styled from 'styled-components';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import * as cardUtils from './cardUtils';
 import FormValidations from './FormValidations';
 import InputStyle from '../../form/Input';
+import noteService from '../../../services/noteService';
 
 import { useForm } from '../../../hooks/useForm';
 import { ErrorMsg } from './ErrorMsg';
 
 export default function CreditCardForm() {
+  const { changeToPremiumPlan } = noteService();
+  const navigate = useNavigate();
   const [card, setCard] = useState({
     cvc: '',
     expiry: '',
@@ -26,8 +30,8 @@ export default function CreditCardForm() {
     validations: FormValidations,
     onSubmit: async (data) => {
       try {
-        // payment here
-        console.log(data);
+        await changeToPremiumPlan();
+        navigate('/home');
       } catch (err) {
         toast('An error occurred, check your data card!');
       }
