@@ -1,9 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Subscription from '../components/plan/Subscription';
 import { Title as TitleStyle } from './home/FirstSection';
 
 export default function Plan() {
+  const navigate = useNavigate();
   return (
     <>
       <Header />
@@ -15,7 +17,7 @@ export default function Plan() {
           <h2>Premium</h2>
           <h2>R$ 10.00/month</h2>
         </PlanContent>
-        <ChangePlan>
+        <ChangePlan onClick={() => navigate('/home')}>
           <h2>Change to free plan</h2>
         </ChangePlan>
         <Subscription />
