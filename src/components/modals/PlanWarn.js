@@ -5,7 +5,7 @@ import noteService from '../../services/noteService';
 
 const modalStyle = {
   content: {
-    padding: '28px',
+    padding: '20px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -20,10 +20,10 @@ const modalStyle = {
     background: 'black',
     borderRadius: '20px',
     maxWidth: '340px',
-    height: '205px',
     overflowY: 'hidden',
     overflowX: 'hidden',
     border: 'none',
+    gap: '20px',
   },
   overlay: {
     background: 'rgba(255, 255, 255, 0.1)',
@@ -36,44 +36,52 @@ export default function PlanWarn({
   return (
     <Modal isOpen={modalIsOpen} style={modalStyle} closeTimeoutMS={500}>
       <ModalText>
-        you reach the maximum number of notes per day,
-        subscribe to the premium plan for unlimited notes
+        <h3>You have reached the maximum number of notes per day</h3>
+        <h4>Would you like to subscribe to the premium plan for unlimited notes?</h4>
       </ModalText>
       <ModalButtons>
         <ModalCancelButton onClick={() => setModalIsOpen(false)}>
           No, go back
         </ModalCancelButton>
         <ModalDeleteButton onClick={() => setModalIsOpen(false)}>
-          Yes, delete it
+          Yes, subscribe
         </ModalDeleteButton>
       </ModalButtons>
     </Modal>
   );
 }
 
-const ModalText = styled.h3`
+const ModalText = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 500;
     font-size: 27px;
-    line-height: 41px;
+    line-height: 35px;
     text-align: center;
     color: #FFFFFF;
     width: 100%;
     word-wrap: break-word;
+    h4 {
+        font-size: 18px;
+        line-height: 30px;
+    }
 `;
 
 const ModalDeleteButton = styled.button`
     background: #1877F2;
     border: none;
     border-radius: 10px;
-    padding: 8px 20px;
+    padding: 8px 15px;
     font-family: 'Lato';
     font-style: normal;
     font-weight: 700;
     font-size: 18px;
     line-height: 22px;
     color: #FFFFFF;
+    width: 47%;
 `;
 
 const ModalCancelButton = styled(ModalDeleteButton)`
