@@ -32,6 +32,12 @@ export default function CreditCardForm() {
         toast('An error occurred, check your data card!');
       }
     },
+    initialValues: {
+      cvc: '',
+      expiry: '',
+      name: '',
+      number: '',
+    },
   });
   const handleCardChange = ({ target }) => {
     if (target.name === 'number') {
