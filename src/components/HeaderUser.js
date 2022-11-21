@@ -4,6 +4,7 @@ import { FiLogOut } from 'react-icons/fi';
 import { useState } from 'react';
 import logo from '../assets/images/logo.png';
 import { useAuth } from '../hooks/useAuth';
+import Img from '../assets/images/ghost.png';
 
 export default function HeaderUser() {
   const { logout } = useAuth();
@@ -25,11 +26,8 @@ export default function HeaderUser() {
             onClick={() => navigate('/notes/today')}
           >
             today
-
           </h1>
-          <Icon>
-            <FiLogOut onClick={() => setClick(!click)} />
-          </Icon>
+          <img onClick={() => setClick(!click)} src={Img} alt="img" />
         </Main>
       </Container>
       <Logout click={click} onClick={() => logout()}>
@@ -70,8 +68,23 @@ const Icon = styled.div`
   margin-left: 10px;
 `;
 
+const Container = styled.div`
+    background: #100E0E;
+    display: flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+    padding: 0 20px;
+    height: 60px;
+    box-shadow: 0px 1px 1px rgba(253, 253, 253, 0.1);
+    img {
+      height: 40px;
+    }
+`;
+
 const Main = styled.div`
     display: flex;
+    align-items:Center;
     gap: 10px;
     color:white;
     font-size:20px; 
@@ -84,20 +97,12 @@ const Main = styled.div`
     .today:hover {
       text-shadow: 2px 2px  red;
     }
-    transition: all .4s ease-in-out
-`;
-
-const Container = styled.div`
-    background: #100E0E;
-    display: flex;
-    flex-direction:row;
-    align-items:center;
-    justify-content:space-between;
-    padding: 0 20px;
-    height: 60px;
-    box-shadow: 0px 1px 1px rgba(253, 253, 253, 0.1);
+    transition: all .4s ease-in-out;
     img {
-        height: 40px;
-        cursor:pointer;
+        border-radius: 100px;
+        border: solid 1px white;
+        height: 30px;
+        width: 30px;
+        margin-left: 10px;
     }
 `;
