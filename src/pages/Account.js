@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
+import { IoIosCheckmarkCircleOutline, IoIosCheckmarkCircle } from 'react-icons/io';
 import Img from '../assets/images/ghost.png';
 
 export default function Account() {
-  const [click, setClick] = useState(false);
+  const [click, setClick] = useState('free');
   return (
     <Container>
       <Profile>
@@ -13,12 +13,12 @@ export default function Account() {
       </Profile>
       <Main>
         <h2>Your Plan</h2>
-        <Free>
-          <IoIosCheckmarkCircleOutline size="23px" />
+        <Free onClick={() => setClick('free')}>
+          {click === 'free' ? <IoIosCheckmarkCircle size="23px" color="white" /> : <IoIosCheckmarkCircleOutline size="23px" color="white" />}
           <h2>Free</h2>
         </Free>
-        <Premium onClick={() => setClick(!click)}>
-          <IoIosCheckmarkCircleOutline size="23px" />
+        <Premium onClick={() => setClick('premium')}>
+          {click === 'premium' ? <IoIosCheckmarkCircle size="23px" color="white" /> : <IoIosCheckmarkCircleOutline size="23px" color="white" />}
           <h2>Premium</h2>
         </Premium>
       </Main>
@@ -99,6 +99,7 @@ const Free = styled.div`
     align-items:Center;
     gap: 15px;
     cursor:pointer;
+    border-radius: 10px;
     h2 {
         font-size: 18px;
     }
