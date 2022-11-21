@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import { IoIosCheckmarkCircleOutline, IoIosCheckmarkCircle } from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
 import Img from '../assets/images/ghost.png';
 
 export default function Account() {
   const [click, setClick] = useState('free');
+  const navigate = useNavigate();
   return (
     <Container>
       <Profile>
@@ -17,7 +19,11 @@ export default function Account() {
           {click === 'free' ? <IoIosCheckmarkCircle size="23px" color="white" /> : <IoIosCheckmarkCircleOutline size="23px" color="white" />}
           <h2>Free</h2>
         </Free>
-        <Premium onClick={() => setClick('premium')}>
+        <Premium onClick={() => {
+          setClick('premium');
+          navigate('/plan');
+        }}
+        >
           {click === 'premium' ? <IoIosCheckmarkCircle size="23px" color="white" /> : <IoIosCheckmarkCircleOutline size="23px" color="white" />}
           <h2>Premium</h2>
         </Premium>
