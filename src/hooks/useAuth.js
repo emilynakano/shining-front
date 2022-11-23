@@ -1,14 +1,11 @@
 import {
   createContext, useCallback, useContext, useState,
 } from 'react';
-import planService from '../services/planService';
 import api from '../services/api';
 
 const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
-  const { changeToPremiumPlan, changeToFreePlan } = planService();
-
   const [data, setData] = useState(() => {
     const accessToken = localStorage.getItem('@shining:token');
     const username = localStorage.getItem('@shining:username');
@@ -56,14 +53,12 @@ function AuthProvider({ children }) {
   }, []);
 
   const getPremiumAccount = useCallback(async () => {
-    await changeToPremiumPlan();
     localStorage.setItem('@shining:plan', 'PREMIUM');
 
     setData({ ...data, plan: 'PREMIUM' });
   }, []);
 
   const getFreeAccount = useCallback(async () => {
-    await changeToFreePlan();
     localStorage.setItem('@shining:plan', 'FREE');
 
     setData({ ...data, plan: 'FREE' });
