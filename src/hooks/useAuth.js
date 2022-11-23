@@ -1,9 +1,8 @@
 import {
   createContext, useCallback, useContext, useState,
 } from 'react';
-import api from '../services/api';
-// eslint-disable-next-line import/no-cycle
 import planService from '../services/planService';
+import api from '../services/api';
 
 const AuthContext = createContext({});
 

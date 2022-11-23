@@ -1,7 +1,6 @@
-// eslint-disable-next-line import/no-cycle
 import useApiPrivate from '../hooks/useApiPrivate';
 
-export default function noteService() {
+export default function planService() {
   const api = useApiPrivate();
 
   async function changeToPremiumPlan() {

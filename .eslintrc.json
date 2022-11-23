@@ -18,6 +18,7 @@
         "react"
     ],
     "rules": {
+        "import/no-cycle": "off",
         "react/jsx-no-useless-fragment": "off",
         "react/no-unescaped-entities": "off",
         "jsx-a11y/no-noninteractive-element-interactions": "off",
