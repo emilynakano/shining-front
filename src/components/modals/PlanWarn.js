@@ -1,4 +1,5 @@
 import Modal from 'react-modal';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
 import noteService from '../../services/noteService';
@@ -33,6 +34,7 @@ const modalStyle = {
 export default function PlanWarn({
   modalIsOpen, setModalIsOpen,
 }) {
+  const navigate = useNavigate();
   return (
     <Modal isOpen={modalIsOpen} style={modalStyle} closeTimeoutMS={500}>
       <ModalText>
@@ -43,7 +45,11 @@ export default function PlanWarn({
         <ModalCancelButton onClick={() => setModalIsOpen(false)}>
           No, go back
         </ModalCancelButton>
-        <ModalDeleteButton onClick={() => setModalIsOpen(false)}>
+        <ModalDeleteButton onClick={() => {
+          setModalIsOpen(false);
+          navigate('/plan');
+        }}
+        >
           Yes, subscribe
         </ModalDeleteButton>
       </ModalButtons>

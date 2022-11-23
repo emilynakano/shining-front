@@ -32,6 +32,7 @@ export default function CreateNote({
         toast.error('You already have a note with this title!');
       }
       if (err.response.status === 400) {
+        setClickCreateNote(false);
         setModalPlanIsOpen(true);
       }
     });
