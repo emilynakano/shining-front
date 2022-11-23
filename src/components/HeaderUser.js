@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { FiLogOut } from 'react-icons/fi';
+import { FiLogOut, FiUser } from 'react-icons/fi';
 import { useState } from 'react';
 import logo from '../assets/images/logo.png';
 import { useAuth } from '../hooks/useAuth';
@@ -30,42 +30,54 @@ export default function HeaderUser() {
           <img onClick={() => setClick(!click)} src={Img} alt="img" />
         </Main>
       </Container>
-      <Logout click={click} onClick={() => logout()}>
-        <div>
-          <h1>Logout</h1>
-        </div>
-      </Logout>
-
+      <Account click={click}>
+        <Content>
+          <div>
+            <FiUser />
+            <h1>Account</h1>
+          </div>
+          <div>
+            <FiLogOut />
+            <h1>Logout</h1>
+          </div>
+        </Content>
+      </Account>
     </>
 
   );
 }
 
-const Logout = styled.div`
-  cursor:pointer;
+const Account = styled.div`
   width: 100%;
   display:flex;
   justify-content:end;
   position:fixed;
   h1 {
-    font-size: 14px;
-  }
-  div {
-    border-radius: 0 0 7px 7px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    width: 70px;
-    height: 40px;
-    background:red;
+    font-size: 13px;
+    font-weight: 800;
   }
   transform: ${(props) => (props.click ? 'translateX(0)' : 'translateX(100%)')};
   transition: transform 0.2s ease-in;
 `;
 
-const Icon = styled.div`
-  cursor:pointer;
-  margin-left: 10px;
+const Content = styled.div`
+  border-radius: 0 0 7px 7px;
+  display:flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+  justify-content:center;
+  background:white;
+  div {
+    cursor: pointer;
+    display: flex;
+    align-items:center;
+    gap: 6px;
+    transition: color 0.2s;
+    &:hover {
+      color: rgba(180,45,45,1);;
+    }
+  }
 `;
 
 const Container = styled.div`
