@@ -21,17 +21,21 @@ export default function Account() {
       <Main>
         <h2>Your Plan</h2>
         <Free onClick={async () => {
-          await getFreeAccount();
-          await changeToFreePlan();
-          setClick('FREE');
+          if (click === 'PREMIUM') {
+            await getFreeAccount();
+            await changeToFreePlan();
+            setClick('FREE');
+          }
         }}
         >
           {click === 'FREE' ? <IoIosCheckmarkCircle size="23px" color="white" /> : <IoIosCheckmarkCircleOutline size="23px" color="white" />}
           <h2>Free</h2>
         </Free>
         <Premium onClick={() => {
-          setClick('premium');
-          navigate('/plan');
+          if (click === 'FREE') {
+            setClick('premium');
+            navigate('/plan');
+          }
         }}
         >
           {click === 'PREMIUM' ? <IoIosCheckmarkCircle size="23px" color="white" /> : <IoIosCheckmarkCircleOutline size="23px" color="white" />}
