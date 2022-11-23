@@ -154,14 +154,11 @@ const FormWrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 10px;
- 
- 
-  
 `;
 
 const ConfirmButton = styled.input`
   width: 100%;
-  height: 55px;
+  height: 50px;
   margin-top: 14px;
   background-color: #e0e0e0;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);

@@ -38,7 +38,7 @@ const Box = styled.div`
           display: flex;
           align-items:Center;
           justify-content: space-between;
-          height: 89px;
+          height: 50px;
           cursor: pointer;
         }
       }

@@ -52,7 +52,6 @@ function AuthProvider({ children }) {
   const logout = useCallback(() => {
     localStorage.removeItem('@shining:token');
     localStorage.removeItem('@shining:username');
-    localStorage.removeItem('@shining:plan');
 
     setData({});
   }, []);

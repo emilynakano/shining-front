@@ -64,7 +64,7 @@ const ChangePlan = styled.div`
 const PlanContent = styled.div`
     width: 80%;
     max-width: 545px;
-    height: 98px;
+    height: 76px;
 
     background: #B92C2C;
     border-radius: 0px 40px;
