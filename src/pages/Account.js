@@ -3,15 +3,19 @@ import styled from 'styled-components';
 import { IoIosCheckmarkCircleOutline, IoIosCheckmarkCircle } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
 import Img from '../assets/images/ghost.png';
+import { useAuth } from '../hooks/useAuth';
 
 export default function Account() {
+  const { data } = useAuth();
+  const { username } = data;
+
   const [click, setClick] = useState('free');
   const navigate = useNavigate();
   return (
     <Container>
       <Profile>
         <img src={Img} alt="img" />
-        <h1>emily nakano</h1>
+        <h1>{username}</h1>
       </Profile>
       <Main>
         <h2>Your Plan</h2>
