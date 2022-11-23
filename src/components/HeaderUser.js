@@ -61,7 +61,7 @@ const Account = styled.div`
     font-size: 13px;
     font-weight: 800;
   }
-  transform: ${(props) => (props.click ? 'translateX(0)' : 'translateX(100%)')};
+  display: ${(props) => (props.click ? 'flex' : 'none')};
   transition: transform 0.2s ease-in;
 `;
 
