@@ -3,10 +3,6 @@ import useApiPrivate from '../hooks/useApiPrivate';
 export default function noteService() {
   const api = useApiPrivate();
 
-  async function changeToPremiumPlan() {
-    await api.patch('/plan/premium');
-  }
-
   async function editNote({ id, content }) {
     await api.patch(`/notes/${id}`, { content });
   }
@@ -30,6 +26,6 @@ export default function noteService() {
   }
 
   return {
-    deleteNote, getNotes, getTodayNotes, reviewNote, editNote, changeToPremiumPlan,
+    deleteNote, getNotes, getTodayNotes, reviewNote, editNote,
   };
 }

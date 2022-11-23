@@ -6,7 +6,6 @@ import { useAuth } from '../hooks/useAuth';
 export default function UserHome() {
   const { data } = useAuth();
   const { username } = data;
-
   const navigate = useNavigate();
   return (
     <Container>

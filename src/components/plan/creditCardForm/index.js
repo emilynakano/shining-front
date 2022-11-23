@@ -8,13 +8,12 @@ import { useNavigate } from 'react-router-dom';
 import * as cardUtils from './cardUtils';
 import FormValidations from './FormValidations';
 import InputStyle from '../../form/Input';
-import noteService from '../../../services/noteService';
-
+import { useAuth } from '../../../hooks/useAuth';
 import { useForm } from '../../../hooks/useForm';
 import { ErrorMsg } from './ErrorMsg';
 
 export default function CreditCardForm() {
-  const { changeToPremiumPlan } = noteService();
+  const { getPremiumAccount } = useAuth();
   const navigate = useNavigate();
   const [card, setCard] = useState({
     cvc: '',
@@ -23,16 +22,16 @@ export default function CreditCardForm() {
     number: '',
     focused: '',
   });
-
   const {
     handleSubmit, handleChange, errors,
   } = useForm({
     validations: FormValidations,
     onSubmit: async (data) => {
       try {
-        await changeToPremiumPlan();
+        await getPremiumAccount();
         navigate('/home');
       } catch (err) {
+        console.log(err);
         toast('An error occurred, check your data card!');
       }
     },

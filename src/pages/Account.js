@@ -6,10 +6,10 @@ import Img from '../assets/images/ghost.png';
 import { useAuth } from '../hooks/useAuth';
 
 export default function Account() {
-  const { data } = useAuth();
-  const { username } = data;
+  const { data, getFreeAccount } = useAuth();
+  const { username, plan } = data;
 
-  const [click, setClick] = useState('free');
+  const [click, setClick] = useState(plan);
   const navigate = useNavigate();
   return (
     <Container>
@@ -19,8 +19,12 @@ export default function Account() {
       </Profile>
       <Main>
         <h2>Your Plan</h2>
-        <Free onClick={() => setClick('free')}>
-          {click === 'free' ? <IoIosCheckmarkCircle size="23px" color="white" /> : <IoIosCheckmarkCircleOutline size="23px" color="white" />}
+        <Free onClick={async () => {
+          await getFreeAccount();
+          setClick('FREE');
+        }}
+        >
+          {click === 'FREE' ? <IoIosCheckmarkCircle size="23px" color="white" /> : <IoIosCheckmarkCircleOutline size="23px" color="white" />}
           <h2>Free</h2>
         </Free>
         <Premium onClick={() => {
@@ -28,7 +32,7 @@ export default function Account() {
           navigate('/plan');
         }}
         >
-          {click === 'premium' ? <IoIosCheckmarkCircle size="23px" color="white" /> : <IoIosCheckmarkCircleOutline size="23px" color="white" />}
+          {click === 'PREMIUM' ? <IoIosCheckmarkCircle size="23px" color="white" /> : <IoIosCheckmarkCircleOutline size="23px" color="white" />}
           <h2>Premium</h2>
         </Premium>
       </Main>
