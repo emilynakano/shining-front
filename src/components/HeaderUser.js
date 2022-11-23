@@ -32,11 +32,11 @@ export default function HeaderUser() {
       </Container>
       <Account click={click}>
         <Content>
-          <div>
+          <div onClick={() => navigate('/account')}>
             <FiUser />
             <h1>Account</h1>
           </div>
-          <div>
+          <div onClick={() => logout()}>
             <FiLogOut />
             <h1>Logout</h1>
           </div>
@@ -90,6 +90,7 @@ const Container = styled.div`
     height: 60px;
     box-shadow: 0px 1px 1px rgba(253, 253, 253, 0.1);
     img {
+      cursor: pointer;
       height: 40px;
     }
 `;
