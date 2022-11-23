@@ -56,13 +56,13 @@ function AuthProvider({ children }) {
     localStorage.setItem('@shining:plan', 'PREMIUM');
 
     setData({ ...data, plan: 'PREMIUM' });
-  }, []);
+  }, [data]);
 
   const getFreeAccount = useCallback(async () => {
     localStorage.setItem('@shining:plan', 'FREE');
 
     setData({ ...data, plan: 'FREE' });
-  }, []);
+  }, [data]);
 
   const auth = !!Object.keys(data).length;
 

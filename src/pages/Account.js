@@ -4,11 +4,12 @@ import { IoIosCheckmarkCircleOutline, IoIosCheckmarkCircle } from 'react-icons/i
 import { useNavigate } from 'react-router-dom';
 import Img from '../assets/images/ghost.png';
 import { useAuth } from '../hooks/useAuth';
+import planService from '../services/planService';
 
 export default function Account() {
   const { data, getFreeAccount } = useAuth();
+  const { changeToFreePlan } = planService();
   const { username, plan } = data;
-
   const [click, setClick] = useState(plan);
   const navigate = useNavigate();
   return (
@@ -21,6 +22,7 @@ export default function Account() {
         <h2>Your Plan</h2>
         <Free onClick={async () => {
           await getFreeAccount();
+          await changeToFreePlan();
           setClick('FREE');
         }}
         >

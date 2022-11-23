@@ -11,9 +11,11 @@ import InputStyle from '../../form/Input';
 import { useAuth } from '../../../hooks/useAuth';
 import { useForm } from '../../../hooks/useForm';
 import { ErrorMsg } from './ErrorMsg';
+import planService from '../../../services/planService';
 
 export default function CreditCardForm() {
   const { getPremiumAccount } = useAuth();
+  const { changeToPremiumPlan } = planService();
   const navigate = useNavigate();
   const [card, setCard] = useState({
     cvc: '',
@@ -29,6 +31,7 @@ export default function CreditCardForm() {
     onSubmit: async (data) => {
       try {
         await getPremiumAccount();
+        await changeToPremiumPlan();
         navigate('/home');
       } catch (err) {
         console.log(err);
