@@ -11,7 +11,7 @@ export default function HeaderUser() {
   const [click, setClick] = useState(false);
   const navigate = useNavigate();
   return (
-    <>
+    <Capsule onClick={() => (click ? setClick(false) : '')}>
       <Container>
         <img onClick={() => navigate('/home')} src={logo} alt="shinning" />
         <Main>
@@ -42,16 +42,21 @@ export default function HeaderUser() {
           </div>
         </Content>
       </Account>
-    </>
+    </Capsule>
 
   );
 }
 
+const Capsule = styled.div`
+`;
+
 const Account = styled.div`
   width: 100%;
+  height: calc(100vh - 60px);
+  z-index: 100;
   display:flex;
   justify-content:end;
-  position:fixed;
+  position:absolute;
   h1 {
     font-size: 13px;
     font-weight: 800;
@@ -61,6 +66,7 @@ const Account = styled.div`
 `;
 
 const Content = styled.div`
+  height: 60px;
   border-radius: 0 0 7px 7px;
   display:flex;
   flex-direction: column;
@@ -81,6 +87,10 @@ const Content = styled.div`
 `;
 
 const Container = styled.div`
+    img {
+      height: 45px;
+      cursor: pointer;
+    }
     background: #100E0E;
     display: flex;
     flex-direction:row;
@@ -89,10 +99,7 @@ const Container = styled.div`
     padding: 0 20px;
     height: 60px;
     box-shadow: 0px 1px 1px rgba(253, 253, 253, 0.1);
-    img {
-      cursor: pointer;
-      height: 40px;
-    }
+    
 `;
 
 const Main = styled.div`
@@ -117,5 +124,6 @@ const Main = styled.div`
         height: 30px;
         width: 30px;
         margin-left: 10px;
+        cursor: pointer;
     }
 `;
