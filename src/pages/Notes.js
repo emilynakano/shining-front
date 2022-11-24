@@ -5,10 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
 import { toast } from 'react-toastify';
 import Note from '../components/note';
-import CreateNote from '../components/CreateNote';
+import CreateNote from '../components/note/CreateNote';
 import Loading from '../components/Loading';
 import DeleteModel from '../components/modals/DeleteModel';
 import noteService from '../services/noteService';
+import PlanWarn from '../components/modals/PlanWarn';
 
 export default function Notes() {
   const [clickCreateNote, setClickCreateNote] = useState(false);
@@ -19,6 +20,7 @@ export default function Notes() {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [noteToDelete, setNoteToDelete] = useState(null);
+  const [modalPlanIsOpen, setModalPlanIsOpen] = useState(false);
 
   const { getNotes } = noteService();
 
@@ -57,6 +59,7 @@ export default function Notes() {
           setClickCreateNote={setClickCreateNote}
           atualization={atualization}
           setAtualization={setAtualization}
+          setModalPlanIsOpen={setModalPlanIsOpen}
         />
         <Row />
 
@@ -87,6 +90,10 @@ export default function Notes() {
         noteToDelete={noteToDelete}
         atualization={atualization}
         setAtualization={setAtualization}
+      />
+      <PlanWarn
+        modalIsOpen={modalPlanIsOpen}
+        setModalIsOpen={setModalPlanIsOpen}
       />
     </>
   );

@@ -2,11 +2,11 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
 import { toast } from 'react-toastify';
-import api from '../services/api';
-import TextEditor from './TextEditor';
+import api from '../../services/api';
+import TextEditor from '../TextEditor';
 
 export default function CreateNote({
-  clickCreateNote, setClickCreateNote, setAtualization, atualization,
+  clickCreateNote, setClickCreateNote, setAtualization, atualization, setModalPlanIsOpen,
 }) {
   const [content, setContent] = useState('');
   const [title, setTitle] = useState('');
@@ -30,6 +30,10 @@ export default function CreateNote({
     promise.catch((err) => {
       if (err.response.status === 409) {
         toast.error('You already have a note with this title!');
+      }
+      if (err.response.status === 400) {
+        setClickCreateNote(false);
+        setModalPlanIsOpen(true);
       }
     });
   }

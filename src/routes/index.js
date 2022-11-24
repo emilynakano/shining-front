@@ -9,6 +9,8 @@ import UserHome from '../pages/UserHome';
 
 import PrivateRouter from './PrivateRouter';
 import PublicRouter from './PublicRouter';
+import Plan from '../pages/Plan';
+import Account from '../pages/Account';
 
 export default function Routes() {
   return (
@@ -38,6 +40,12 @@ export default function Routes() {
         )}
       />
       <Route
+        path="/plan"
+        element={(
+          <Plan />
+        )}
+      />
+      <Route
         path="/home"
         element={(
           <PrivateRouter>
@@ -58,6 +66,14 @@ export default function Routes() {
         element={(
           <PrivateRouter>
             <Today />
+          </PrivateRouter>
+        )}
+      />
+      <Route
+        path="/account"
+        element={(
+          <PrivateRouter>
+            <Account />
           </PrivateRouter>
         )}
       />

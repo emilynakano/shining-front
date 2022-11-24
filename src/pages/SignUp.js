@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Input from '../components/form/Input';
 import Button from '../components/form/Button';
@@ -11,6 +11,9 @@ import Form from '../components/form';
 import { useAuth } from '../hooks/useAuth';
 
 export default function SignUp() {
+  const { state } = useLocation();
+  const plan = state?.plan;
+
   const { signUpAndLogin } = useAuth();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -30,6 +33,9 @@ export default function SignUp() {
     setLoading(true);
     try {
       await signUpAndLogin(user);
+      if (plan === 'premium') {
+        return navigate('/plan');
+      }
       toast.success('Account created successfully!');
       setTimeout(() => {
         navigate('/home');

@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { FcCalendar, FcKindle } from 'react-icons/fc';
+import { useAuth } from '../hooks/useAuth';
 
 export default function UserHome() {
-  const username = localStorage.getItem('@shining:username');
+  const { data } = useAuth();
+  const { username } = data;
   const navigate = useNavigate();
   return (
     <Container>

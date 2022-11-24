@@ -4,6 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
 body {
     background:  #161212;
+    overflow-x: hidden;
 }
 * {
     box-sizing: border-box;
