@@ -62,7 +62,7 @@ const Button = styled.div`
     border-radius: 50px 50px 0 50px;
     position:relative;
     z-index:12;
-    margin-top: -26px;
+    margin-top: -30px;
     
     font-family: 'Roboto';
     font-style: normal;

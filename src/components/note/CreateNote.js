@@ -62,7 +62,7 @@ const Editor = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  height: 55vh;
+
   h1 {
     font-family: 'Roboto';
     font-style: normal;
@@ -110,23 +110,12 @@ const Input = styled.input`
 const Button = styled.button`
   cursor: pointer;
   width: 100px;
-  height: 25px;
+  height: 30px;
   border: none;
   background-color:#6baaf7; 
   border-radius: 50px 50px 0 50px;
-  position:relative;
   z-index:12;
-  margin-top: -26px;
-
-  @keyframes go-back {
-  from {
-    transform: translateY(-3px);
-  }
-  to {
-    transform: translateY(0px);
-  }
-  }
-  animation: go-back 1s infinite alternate;
+  margin-top: -32px;
 
   span {
     font-family: 'Roboto';

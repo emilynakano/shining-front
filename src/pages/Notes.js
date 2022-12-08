@@ -109,6 +109,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 20px;
+  gap: 2px;
   h2 {
     font-weight: 700;
     color: white;
